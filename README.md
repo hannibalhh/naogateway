@@ -98,7 +98,7 @@ Binärdateien sind zu bekommen unter:
 	sudo update-alternatives --set "jar" "/opt/Oracle_Java/jdk1.6.0_38/bin/jar" 
 	sudo update-alternatives --set "javah" "/opt/Oracle_Java/jdk1.6.0_38/bin/javah"
 
-### Wieder zu jzmq
+### jzmq konfigurieren und compilieren 
 ``` ./configure
  make
  sudo make install 
