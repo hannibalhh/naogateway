@@ -84,12 +84,14 @@ Binärdateien sind zu bekommen unter:
 ### Wieder zu jzmq
 ``` ./configure
  make
- sudo make install ```
+ sudo make install 
+```
 
 ### Installation Simple Build Tool
 ``` wget http://apt.typesafe.com/repo-deb-build-0002.deb
  dpkg -i repo-deb-build-0002.deb
- apt-get install typesafe-stack ```
+ apt-get install typesafe-stack 
+```
 
 ### Installation naogateway
 - git clone https://github.com/hannibalhh/naogateway.git
@@ -100,7 +102,8 @@ Binärdateien sind zu bekommen unter:
 	  [-n | --name naoname = nila] 
 	  [-c | --config absolutepath = naogateway/src/main/resources/application.conf]
 	  [-t | --test host port]
-	  [-h | --help] ```
+	  [-h | --help] 
+```
 
 ### Konfigurationsdatei
 naogateway/src/main/resources/application.conf
