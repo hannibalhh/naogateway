@@ -1,0 +1,20 @@
+// RPC wrapper messages.
+message HAWActorRPCRequest {
+  required string module = 1;
+  required string method = 2;
+  repeated MixedValue params = 3;//We need to use an own type who encapsulates all possible Values
+}
+
+message HAWActorRPCResponse {
+  optional MixedValue returnval = 1;
+  optional string error = 2;
+}
+
+message MixedValue {
+  optional string string = 1;
+  optional uint32 int = 2;
+  optional float float = 3;
+  optional bytes binary = 4;
+  optional bool bool = 5;
+  repeated MixedValue array = 6;
+}

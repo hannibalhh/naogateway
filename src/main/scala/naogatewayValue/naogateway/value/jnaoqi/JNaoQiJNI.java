@@ -1,0 +1,54 @@
+package naogateway.value.jnaoqi;
+
+//import com.aldebaran.proxy.ALProxy;
+import naogateway.value.jnaoqi.Variant;
+
+public class JNaoQiJNI {
+	  public final static native int Variant_VINT_get();
+	  public final static native int Variant_VBOOL_get();
+	  public final static native int Variant_VSTRING_get();
+	  public final static native int Variant_VCHARARRAY_get();
+	  public final static native int Variant_VFLOATARRAY_get();
+	  public final static native int Variant_VARRAY_get();
+	  public final static native int Variant_VINTARRAY_get();
+	  public final static native int Variant_VFLOAT_get();
+	  public final static native int Variant_VBINARY_get();
+//	  public final static native void Variant_variantType_set(long jarg1, Variant jarg1_, int jarg2);
+//	  public final static native int Variant_variantType_get(long jarg1, Variant jarg1_);
+//	  public final static native long new_Variant__SWIG_0();
+//	  public final static native long new_Variant__SWIG_1(int jarg1);
+//	  public final static native long new_Variant__SWIG_2(float jarg1);
+//	  public final static native long new_Variant__SWIG_3(long jarg1, Variant jarg1_);
+//	  public final static native long new_Variant__SWIG_4(String jarg1);
+//	  public final static native int Variant_getType(long jarg1, Variant jarg1_);
+//	  public final static native long Variant_getValue(long jarg1, Variant jarg1_);
+//	  public final static native long new_Variant__SWIG_5(byte[] jarg1);
+//	  public final static native long new_Variant__SWIG_6(boolean jarg1);
+//	  public final static native long new_Variant__SWIG_7(String[] jarg1);
+//	  public final static native long new_Variant__SWIG_8(float[] jarg1);
+//	  public final static native long new_Variant__SWIG_9(int[] jarg1);
+	  public final static native int Variant_toInt(long jarg1, Variant jarg1_);
+	  public final static native String Variant_toString(long jarg1, Variant jarg1_);
+	  public final static native float Variant_toFloat(long jarg1, Variant jarg1_);
+	  public final static native boolean Variant_toBoolean(long jarg1, Variant jarg1_);
+	  public final static native void Variant_push_back(long jarg1, Variant jarg1_, long jarg2, Variant jarg2_);
+	  public final static native long Variant_getElement(long jarg1, Variant jarg1_, int jarg2);
+	  public final static native byte[] Variant_toBinary(long jarg1, Variant jarg1_);
+	  public final static native float[] Variant_toFloatArray(long jarg1, Variant jarg1_);
+	  public final static native int[] Variant_toIntArray(long jarg1, Variant jarg1_);
+	  public final static native Object[] Variant_toStringArray(long jarg1, Variant jarg1_);
+	  public final static native int Variant_getSize(long jarg1, Variant jarg1_);
+	  public final static native String Variant_getBuffer(long jarg1, Variant jarg1_);
+//	  public final static native long Variant_toALValue(long jarg1, Variant jarg1_);
+//	  public final static native void Variant_fromALValue(long jarg1, Variant jarg1_, long jarg2);
+//	  public final static native void delete_Variant(long jarg1);
+//	  public final static native long new_ALProxy(String jarg1, String jarg2, int jarg3);
+//	  public final static native void delete_ALProxy(long jarg1);
+//	  public final static native long ALProxy_call__SWIG_0(long jarg1, ALProxy jarg1_, String jarg2);
+//	  public final static native long ALProxy_call__SWIG_1(long jarg1, ALProxy jarg1_, String jarg2, long jarg3, Variant jarg3_);
+//	  public final static native long ALProxy_call__SWIG_2(long jarg1, ALProxy jarg1_, String jarg2, long jarg3, Variant jarg3_, long jarg4, Variant jarg4_);
+//	  public final static native long ALProxy_call__SWIG_3(long jarg1, ALProxy jarg1_, String jarg2, long jarg3, Variant jarg3_, long jarg4, Variant jarg4_, long jarg5, Variant jarg5_);
+//	  public final static native long ALProxy_call__SWIG_4(long jarg1, ALProxy jarg1_, String jarg2, long jarg3, Variant jarg3_, long jarg4, Variant jarg4_, long jarg5, Variant jarg5_, long jarg6, Variant jarg6_);
+//	  public final static native long ALProxy_call__SWIG_5(long jarg1, ALProxy jarg1_, String jarg2, long jarg3, Variant jarg3_, long jarg4, Variant jarg4_, long jarg5, Variant jarg5_, long jarg6, Variant jarg6_, long jarg7, Variant jarg7_);
+//	  public final static native long ALProxy_call__SWIG_6(long jarg1, ALProxy jarg1_, String jarg2, long jarg3, Variant jarg3_, long jarg4, Variant jarg4_, long jarg5, Variant jarg5_, long jarg6, Variant jarg6_, long jarg7, Variant jarg7_, long jarg8, Variant jarg8_);
+	}

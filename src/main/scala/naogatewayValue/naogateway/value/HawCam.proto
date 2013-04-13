@@ -1,0 +1,14 @@
+
+//If an optional value isn't set, then the value from the previous subscription is taken to subscribe.
+//If no values are set, then the message is interpreted as a request to get the current image.
+//Otherwise it's only a subscription request. Every subscription-Request returns an empty CamResponse.
+message CamRequest {
+ optional uint32 resolution = 1; // { 0 = kQQVGA, 1 = kQVGA, 2 = kVGA, 3 = k4VGA }
+ optional uint32 colorSpace = 2; // { 0 = kYuv, 9 = kYUV422, 10 = kYUV, 11 = kRGB, 12 = kHSY, 13 = kBGR }
+ optional uint32 fps = 3;        // { max. 30 fps }
+}
+
+message CamResponse {
+  optional bytes imageData = 1;
+  optional string error = 2; //Is set if an exception ocurred inside a Nao module
+}
