@@ -33,12 +33,9 @@ public class ZMQ {
 		// java.library.path
 		if (!EmbeddedLibraryTools.LOADED_EMBEDDED_LIBRARY)
 		{
-			try {
-				 System.load("/usr/local/lib/libjzmq.so");
-			} catch (Exception e) {
-				// macos
-				System.load("/usr/local/lib/libjzmq.0.dylib");
-			}
+//			System.load("/usr/local/lib/libjzmq.0.dylib");
+			System.load("/usr/local/lib/libjzmq.so");
+
 		}
 	}
 

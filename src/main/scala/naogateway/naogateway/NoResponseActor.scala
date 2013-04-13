@@ -124,10 +124,10 @@ class NoResponseActor extends Actor with Stash{
 //    case x => wrongMessage(x, "communicating")
 //  }
 
-  def trace(a: Any) = if (LogConf.NoResponseActor.info) log.info(a.toString)
-  def error(a: Any) = if (LogConf.NoResponseActor.error) log.warning(a.toString)
-  def wrongMessage(a: Any, state: String) = if (LogConf.NoResponseActor.wrongMessage) log.warning("wrong message: " + a + " in " + state)
+  def trace(a: Any) = if (context.system.settings.config.getBoolean("log.noresponseactor.info")) log.info(a.toString)
+  def error(a: Any) = if (context.system.settings.config.getBoolean("log.noresponseactor.error")) log.warning(a.toString)
+  def wrongMessage(a: Any, state: String) = if (context.system.settings.config.getBoolean("log.noresponseactor.wrongMessage")) log.warning("wrong message: " + a + " in " + state)
   import akka.event.Logging
   val log = Logging(context.system, this)
-  trace("is started")
+  trace("is started ")
 }

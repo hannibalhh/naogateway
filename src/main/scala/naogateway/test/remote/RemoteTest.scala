@@ -15,7 +15,7 @@ object RemoteTest extends App{
 
 //  val a = Address("akka", "naogateway", "localhost", 2552)
  
-  val naoActor = system.actorFor("akka://naogateway@127.0.0.1:2552/user/nila")
+  val naoActor = system.actorFor("akka://naogateway@192.168.56.101:2552/user/nila")
   println(naoActor)
   system.actorOf(Props[MyResponseTestActor])	
   

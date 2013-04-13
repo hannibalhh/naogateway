@@ -77,9 +77,9 @@ import akka.actor.Props
       }
   }
   
-  def trace(a: Any) = if (LogConf.HeartBeatActor.info) log.info(a.toString)
-  def error(a: Any) = if (LogConf.HeartBeatActor.error) log.warning(a.toString)
-  def wrongMessage(a: Any, state: String) = if (LogConf.HeartBeatActor.wrongMessage) log.warning("wrong message: " + a + " in " + state)
+  def trace(a: Any) = if (context.system.settings.config.getBoolean("log.heartbeatactor.info")) log.info(a.toString)
+  def error(a: Any) = if (context.system.settings.config.getBoolean("log.heartbeatactor.error")) log.warning(a.toString)
+  def wrongMessage(a: Any, state: String) = if (context.system.settings.config.getBoolean("log.heartbeatactor.wrongMessage")) log.warning("wrong message: " + a + " in " + state)
   import akka.event.Logging
   val log = Logging(context.system, this)
   trace("is started ")

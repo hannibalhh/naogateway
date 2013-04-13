@@ -71,9 +71,9 @@ import akka.actor.Actor
     case x => wrongMessage(x, "communicating")
   }
   
-  def trace(a: Any) = if (LogConf.NaoActor.info) log.info(a.toString)
-  def error(a: Any) = if (LogConf.NaoActor.error) log.warning(a.toString)
-  def wrongMessage(a: Any, state: String) = if (LogConf.NaoActor.wrongMessage) log.warning("wrong message: " + a + " in " + state)
+  def trace(a: Any) = if (context.system.settings.config.getBoolean("log.naoactor.info")) log.info(a.toString)
+  def error(a: Any) = if (context.system.settings.config.getBoolean("log.naoactor.error")) log.warning(a.toString)
+  def wrongMessage(a: Any, state: String) = if (context.system.settings.config.getBoolean("log.naoactor.wrongMessage")) log.warning("wrong message: " + a + " in " + state)
   import akka.event.Logging
   val log = Logging(context.system, this)
   trace("is started ")
