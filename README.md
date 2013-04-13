@@ -26,6 +26,7 @@ Make a naoqi API available in scala with akka, protobuf and zeromq under the hoo
 	iface eth1 inet dhcp
 ```
 
+Nun kann via ssh die Installation der ersten Bibliotheken geschehen:
 ```
 	sudo apt-get update
 	sudo apt-get install libzmq1 libzmq-dev libprotobuf-java git
