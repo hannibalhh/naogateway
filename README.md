@@ -20,9 +20,11 @@ Make a naoqi API available in scala with akka, protobuf and zeromq under the hoo
 	-  	hosted only und erstellten Netzwerk (Standardnetzwerkkarte) -> ssh Zugriff
 	- 	NAT -> Internet
 - in /etc/network/interfaces zweites Interface eintragen
-	-  auto eth1
-	-  iface eth1 inet dhcp
 	
+	auto eth1
+	iface eth1 inet dhcp
+	
+	sudo apt-get update
 	sudo apt-get install libzmq1 libzmq-dev libprotobuf-java git
 
 - Dabei wurden folgende Pakete installiert:
@@ -55,7 +57,9 @@ Dabei wurden folgende Pakete installiert (u.a.)
 - g++ (4:4.7.2-1ubuntu2)
 - make (3.81-8.2ubuntu2)
 
+```
 	./autogen.sh
+```
 
 Da Ubuntu auf OpenJDK setzt und dieses eine andere Serialisierung verwendet, 
 muss Oracle Java manuell installiert werden.
@@ -112,11 +116,9 @@ Binärdateien sind zu bekommen unter:
 	  [-t | --test host port]
 	  [-h | --help] 
 
-
-### Konfigurationsdatei
-naogateway/src/main/resources/application.conf
-
-have fun
+Angenommen ein naogateway ist gestartet, so kann mit -t ein Say zum testen an 
+den naogateway (remote) verschickt werden. Zu beachten ist, dass Client und Server
+im gleichen Netz ihre Ports binden.
 
 
 
