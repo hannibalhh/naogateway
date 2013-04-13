@@ -4,35 +4,35 @@ Make a naoqi API available in scala with akka, protobuf and zeromq under the hoo
 
 ### Installationsanleitung 
 
-VirtualBox 4.2
-Neue Maschine -> Linux->Ubuntu 12.10 64Bit
-8GB Fesplatte (dynamisch), 1024MB RAM -> Ubuntu Server 12.10 64Bit installiert (3.5er Kernel)
-Computername: naogateway
-Account: nao
-Passwort: gateway
-Aktualisierungen manuell
-Sprache und Tastaturlayot: Deutsch
-Partitionierung: Eine ext4 + swap (Variante: vollständige Festplatte verwenden)
-VirtualBox -> Einstellungen -> Netzwerk -> Netzwerk erstellen
-Open SSH Server bei Installation mitinstalliert und mit sudo start ssh gestartet
-Grub Bootloader -> MBR
-VM mit folgenden Netzwerkeinstellungen versorgen:
-	hosted only und erstellten Netzwerk (Standardnetzwerkkarte) -> ssh Zugriff
-	NAT -> Internet
-in /etc/network/interfaces zweites Interface eintragen
- auto eth1
- iface eth1 inet dhcp
-sudo apt-get install libzmq1 libzmq-dev libprotobuf-java git
-Dabei wurden folgende Pakete installiert:
-libpgm-5.1-0:amd64 (5.1.118-1~dfsg-0.1ubuntu1)
-libzmq1:amd64 (2.2.0+dfsg-2ubuntu1)
-liberror-perl (0.17-1)
-git-man (1:1.7.10.4-1ubuntu1)
-git (1:1.7.10.4-1ubuntu1)
-libprotobuf-java (2.4.1-3ubuntu1)
-libprotobuf7 (2.4.1-3ubuntu1)
-libprotoc7 (2.4.1-3ubuntu1)
-protobuf-compiler (2.4.1-3ubuntu1)
+- VirtualBox 4.2
+- Neue Maschine -> Linux->Ubuntu 12.10 64Bit
+- 8GB Fesplatte (dynamisch), 1024MB RAM -> Ubuntu Server 12.10 64Bit installiert (3.5er Kernel)
+- Computername: naogateway
+- Account: nao
+- Passwort: gateway
+- Aktualisierungen manuell
+- Sprache und Tastaturlayot: Deutsch
+- Partitionierung: Eine ext4 + swap (Variante: vollständige Festplatte verwenden)
+- VirtualBox -> Einstellungen -> Netzwerk -> Netzwerk erstellen
+- Open SSH Server bei Installation mitinstalliert und mit sudo start ssh gestartet
+- Grub Bootloader -> MBR
+- VM mit folgenden Netzwerkeinstellungen versorgen:
+- - 	hosted only und erstellten Netzwerk (Standardnetzwerkkarte) -> ssh Zugriff
+- - 	NAT -> Internet
+- in /etc/network/interfaces zweites Interface eintragen
+-  auto eth1
+-  iface eth1 inet dhcp
+- sudo apt-get install libzmq1 libzmq-dev libprotobuf-java git
+- Dabei wurden folgende Pakete installiert:
+- libpgm-5.1-0:amd64 (5.1.118-1~dfsg-0.1ubuntu1)
+- libzmq1:amd64 (2.2.0+dfsg-2ubuntu1)
+- liberror-perl (0.17-1)
+- git-man (1:1.7.10.4-1ubuntu1)
+- git (1:1.7.10.4-1ubuntu1)
+- libprotobuf-java (2.4.1-3ubuntu1)
+- libprotobuf7 (2.4.1-3ubuntu1)
+- libprotoc7 (2.4.1-3ubuntu1)
+- protobuf-compiler (2.4.1-3ubuntu1)
 
 ### Installation jzmq
 https://github.com/zeromq/jzmq Revision 6f28d8c
