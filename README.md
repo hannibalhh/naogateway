@@ -116,8 +116,11 @@ Binärdateien sind zu bekommen unter:
 	git clone https://github.com/hannibalhh/naogateway.git
 	cd naogateway
 	sbt run
-	Help run -h
-
+	
+Über -h gelangt man zur kleinen Hilfe, die beschreibt wie man auf die verschiedenen
+Naos zugreifen kann. Außerdem kann eine Konfigurationsdatei angegeben werden.
+ 
+	run -h
     Usage: naogateway 
 	  [-n | --name naoname = nila] 
 	  [-c | --config absolutepath = naogateway/src/main/resources/application.conf]
@@ -127,6 +130,70 @@ Binärdateien sind zu bekommen unter:
 Angenommen ein naogateway ist gestartet, so kann mit -t ein Say zum testen an 
 den naogateway (remote) verschickt werden. Zu beachten ist, dass Client und Server
 im gleichen Netz ihre Ports binden müssen.
+
+Wichtig ist, dass in der Konfigurationsdatei für den noagateway der Namespace naogateway
+definiert ist. Die Angabe des naos führt dazu, dass im Namespace naogateway der entsprechende 
+Unterbaum als Wurzel der Konfiguration verwendet wird und naogateway als Fallback (Elternknoten)
+dient. D.h. naospezifische Angaben werden in dem entsprechenden Namespace (z.B. nila)
+geätigt, allgemeine Konfigurationen in naogateway. Folgende Konfiguration
+ist die Minimalkonfiguration für die remote Kommunikation.
+
+Der naogateway ist über 192.168.1.1:2552 erreichbar und kann die Naos hanna
+und nila ansprechen. Der HAWActor wird über den Port 5555 angesprochen, der HAWCamAktor
+wird dagegen über 5556 erreicht. Über den Namespace log können die Loggingausgaben
+der einzelnen Aktoren konfiguriert werden.
+
+	naogateway{
+		hanna {    
+		  nao.host = "127.0.0.1"
+		  nao.name = "Hanna"
+		}
+		nila { 
+		  nao.host = "192.168.1.10"
+		  nao.name = "Nila"
+		}
+		nao.port = 5555
+		nao.camport = 5556
+		akka {
+		  actor {
+			provider = "akka.remote.RemoteActorRefProvider"
+		  }	
+		  remote {
+			transport = "akka.remote.netty.NettyRemoteTransport"
+			netty {
+			  hostname = "192.168.1.1"
+			  port = 2552
+			}
+		  }
+		}
+		log {
+		   naoactor{
+			info = true
+			error = true
+			wrongMessage = true
+		  }
+		  responseactor{
+			info = true
+			error = true
+			wrongMessage = true
+		  }
+		  noresponseactor{
+			info = true
+			error = true
+			wrongMessage = true
+		  }
+		  heartbeatactor{
+			info = true
+			error = true
+			wrongMessage = true
+		  }
+		  visionactor{
+			info = true
+			error = true
+			wrongMessage = true
+		  }  
+		}
+	}
 
 Die Architektur und Kommunikation ist in
 https://github.com/hannibalhh/naogateway/blob/master/naogateway.pdf
