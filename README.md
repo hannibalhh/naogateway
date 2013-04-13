@@ -20,12 +20,16 @@ Make a naoqi API available in scala with akka, protobuf and zeromq under the hoo
 	-  	hosted only und erstellten Netzwerk (Standardnetzwerkkarte) -> ssh Zugriff
 	- 	NAT -> Internet
 - in /etc/network/interfaces zweites Interface eintragen
-	
+
+```	
 	auto eth1
 	iface eth1 inet dhcp
-	
+```
+
+```
 	sudo apt-get update
 	sudo apt-get install libzmq1 libzmq-dev libprotobuf-java git
+```
 
 - Dabei wurden folgende Pakete installiert:
 	- libpgm-5.1-0:amd64 (5.1.118-1~dfsg-0.1ubuntu1)
@@ -118,7 +122,9 @@ Binärdateien sind zu bekommen unter:
 
 Angenommen ein naogateway ist gestartet, so kann mit -t ein Say zum testen an 
 den naogateway (remote) verschickt werden. Zu beachten ist, dass Client und Server
-im gleichen Netz ihre Ports binden.
+im gleichen Netz ihre Ports binden müssen.
 
-
+Die Architektur und Kommunikation ist in
+https://github.com/hannibalhh/naogateway/blob/master/naogateway.pdf
+beschrieben.
 
