@@ -10,13 +10,13 @@ import naogateway.value.NaoMessages.Conversions._
 import akka.actor.Props
 
 object NaoActorTest extends App {
-  val naoActor = scaleNaoSystem("nila")
+  val naoActor = scaleNaoSystem("nila").naoActor
   val system = ActorSystem("TestSystem") 
   system.actorOf(Props[ResponseTestActor])	
   
   class ResponseTestActor extends TestActor {
     override def preStart = naoActor ! Connect
-
+ 
     def receive = {
       case (response: ActorRef, noResponse: ActorRef, vision: ActorRef) => {
         trace(response)

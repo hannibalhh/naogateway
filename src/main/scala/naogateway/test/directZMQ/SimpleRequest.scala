@@ -2,7 +2,7 @@ package test.directZMQ
 
 import naogateway.value.Hawactormsg._
 
-class SimpleRequest(address: String = "tcp://127.0.0.1:5555", tracing: Boolean = true) {
+class SimpleReq(address: String = "tcp://127.0.0.1:5555", tracing: Boolean = true) {
 
   import naogateway.value._
   val socket = zMQ.socket(url = address)
@@ -15,8 +15,8 @@ class SimpleRequest(address: String = "tcp://127.0.0.1:5555", tracing: Boolean =
       val socket = cont.createSocket(REQ)
       socket.connect(url)
       socket
-    }
-  }
+    } 
+  } 
 
   trace("Socket binded with " + address)
 

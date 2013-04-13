@@ -33,10 +33,10 @@ public class ZMQ {
 		if (!EmbeddedLibraryTools.LOADED_EMBEDDED_LIBRARY)
 			
 			// linux
-			System.load("/usr/local/lib/libjzmq.so");
+			//System.load("/usr/local/lib/libjzmq.so");
 			
 			// macos
-			//System.load("/usr/local/lib/libjzmq.0.dylib");
+			System.load("/usr/local/lib/libjzmq.0.dylib");
 	}
 
     // Values for flags in Socket's send and recv functions.

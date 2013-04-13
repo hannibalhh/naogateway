@@ -7,6 +7,7 @@ import naogateway.value.NaoMessages._
 import naogateway.value.NaoMessages.Conversions._
 import naogateway.ResponseActor
 import akka.actor.ActorSystem
+import naogateway.value.Nao
 
 
 object ResponseTest extends App {

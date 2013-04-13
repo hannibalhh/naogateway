@@ -1,16 +1,15 @@
 package test.remote
-
 import akka.actor.ActorSystem
+import akka.actor.Actor
 import com.typesafe.config.ConfigFactory
 import akka.actor.ActorRef
 import akka.actor.Props
-import test.simple.TestActor
 import naogateway.value.NaoMessages._
 import naogateway.value.NaoMessages.Conversions._
 import akka.actor.Address
 import naogateway.value.NaoVisionMessages._
 
-object RemoteTest extends App{
+object RemoteTest extends App{  
   val config = ConfigFactory.load()
   val system = ActorSystem("remoting",config.getConfig("remoting").withFallback(config))
 
@@ -18,9 +17,9 @@ object RemoteTest extends App{
  
   val naoActor = system.actorFor("akka://naogateway@127.0.0.1:2552/user/nila")
   println(naoActor)
-  system.actorOf(Props[ResponseTestActor])	
+  system.actorOf(Props[MyResponseTestActor])	
   
-  class ResponseTestActor extends TestActor {
+  class MyResponseTestActor extends Actor  {
     override def preStart = naoActor ! Connect
 
     def receive = {
@@ -45,5 +44,11 @@ object RemoteTest extends App{
         Call('ALTextToSpeech, 'say, List("Danke!"))
       }
     }
+    
+        def trace(a: Any) = log.info(a.toString)
+    def error(a: Any) = log.warning(a.toString)
+    def wrongMessage(a: Any, state: String) = log.warning("wrong message: " + a + " in " + state)
+    import akka.event.Logging
+    val log = Logging(context.system, this)
   }
 }
