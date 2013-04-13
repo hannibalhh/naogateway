@@ -82,18 +82,21 @@ Binärdateien sind zu bekommen unter:
 	sudo cp -a jdk1.6.0_38/ /opt/Oracle_Java/
 	sudo chown -R root:root /opt/Oracle_Java/* 
 
-- Java Alternative installieren
-	- sudo update-alternatives --install "/usr/bin/java" "java" "/opt/Oracle_Java/jdk1.6.0_38/bin/java" 1
-	- sudo update-alternatives --install "/usr/bin/javac" "javac" "/opt/Oracle_Java/jdk1.6.0_38/bin/javac" 1
-	- sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/opt/Oracle_Java/jdk1.6.0_38/bin/javaws" 1
-	- sudo update-alternatives --install "/usr/bin/jar" "jar" "/opt/Oracle_Java/jdk1.6.0_38/bin/jar" 1 
-	- sudo update-alternatives --install "/usr/bin/javah" "javah" "/opt/Oracle_Java/jdk1.6.0_38/bin/javah" 1
-- Java Alternative einrichten	
-	- sudo update-alternatives --set "java" "/opt/Oracle_Java/jdk1.6.0_38/bin/java"
-	- sudo update-alternatives --set "javac" "/opt/Oracle_Java/jdk1.6.0_38/bin/javac"
-	- sudo update-alternatives --set "javaws" "/opt/Oracle_Java/jdk1.6.0_38/bin/javaws"
-	- sudo update-alternatives --set "jar" "/opt/Oracle_Java/jdk1.6.0_38/bin/jar" 
-	- sudo update-alternatives --set "javah" "/opt/Oracle_Java/jdk1.6.0_38/bin/javah"
+Java Alternative installieren
+
+	sudo update-alternatives --install "/usr/bin/java" "java" "/opt/Oracle_Java/jdk1.6.0_38/bin/java" 1
+	sudo update-alternatives --install "/usr/bin/javac" "javac" "/opt/Oracle_Java/jdk1.6.0_38/bin/javac" 1
+	sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/opt/Oracle_Java/jdk1.6.0_38/bin/javaws" 1
+	sudo update-alternatives --install "/usr/bin/jar" "jar" "/opt/Oracle_Java/jdk1.6.0_38/bin/jar" 1 
+	sudo update-alternatives --install "/usr/bin/javah" "javah" "/opt/Oracle_Java/jdk1.6.0_38/bin/javah" 1
+
+Java Alternative einrichten
+
+	sudo update-alternatives --set "java" "/opt/Oracle_Java/jdk1.6.0_38/bin/java"
+	sudo update-alternatives --set "javac" "/opt/Oracle_Java/jdk1.6.0_38/bin/javac"
+	sudo update-alternatives --set "javaws" "/opt/Oracle_Java/jdk1.6.0_38/bin/javaws"
+	sudo update-alternatives --set "jar" "/opt/Oracle_Java/jdk1.6.0_38/bin/jar" 
+	sudo update-alternatives --set "javah" "/opt/Oracle_Java/jdk1.6.0_38/bin/javah"
 
 ### Wieder zu jzmq
 ``` ./configure
