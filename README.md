@@ -195,6 +195,29 @@ der einzelnen Aktoren konfiguriert werden.
 		}
 	}
 
+Um mit dem naogateway zu kommunzieren, muss auch eine kleine Konfiguration
+vorgenommen werden. Folgedes Beispiel kann dafür übernommen werden. 
+Host und Port dürfen nicht gleich dem naogateway sein, der host muss
+außerdem im gleichen Netzwerk wie der naogateway erreichbar sein.
+127.0.0.1 ist nur möglich und nötig, wenn sich beide auf dem gleichen Rechner 
+befinden. Dieses Beispiel ist gleichzeitug die Konfiguration des Testapplikation.
+
+	remoting{
+		akka.loglevel = "DEBUG"
+		akka {
+		  actor {
+			provider = "akka.remote.RemoteActorRefProvider"
+		  }	
+		  remote {
+			transport = "akka.remote.netty.NettyRemoteTransport"
+			netty {
+			  hostname = "192.168.1.2"
+			  port = 2551
+			}
+		  }
+		}
+	}
+
 Die Architektur und Kommunikation ist in
 https://github.com/hannibalhh/naogateway/blob/master/naogateway.pdf
 beschrieben.
