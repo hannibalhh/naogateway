@@ -200,7 +200,7 @@ vorgenommen werden. Folgedes Beispiel kann dafür übernommen werden.
 Host und Port dürfen nicht gleich dem naogateway sein, der host muss
 außerdem im gleichen Netzwerk wie der naogateway erreichbar sein.
 127.0.0.1 ist nur möglich und nötig, wenn sich beide auf dem gleichen Rechner 
-befinden. Dieses Beispiel ist gleichzeitug die Konfiguration des Testapplikation.
+befinden. Dieses Beispiel ist gleichzeitig die Konfiguration des Testapplikation.
 
 	remoting{
 		akka.loglevel = "DEBUG"
