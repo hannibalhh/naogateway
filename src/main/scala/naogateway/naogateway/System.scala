@@ -25,7 +25,7 @@ case class scaleNaoSystem(nao:String = "nila",configPath:String = ""){
    val naoActor = system.actorOf(Props[NaoActor].withDispatcher("akka.actor.default-stash-dispatcher"),nao)
 }
 
-class SimpleRemoteTest(nao:String,host:String,port:String) {  
+class SimpleRemoteTest(nao:String,host:String,port:String,configPath:String = "") {  
   import akka.actor.ActorSystem
   import akka.actor.Actor
   import com.typesafe.config.ConfigFactory
@@ -35,7 +35,12 @@ class SimpleRemoteTest(nao:String,host:String,port:String) {
   import naogateway.value.NaoMessages.Conversions._
   import akka.actor.Address
   import naogateway.value.NaoVisionMessages._
-  val config = ConfigFactory.load()
+  val config = {
+     configPath match {
+       case "" => ConfigFactory.load()
+       case x => ConfigFactory.parseFile(new File(x))
+     }    
+   }
   val system = ActorSystem("remoting",config.getConfig("remoting").withFallback(config)) 
   val naoActor = system.actorFor("akka://naogateway@"+host+":"+port+"/user/"+nao+"/response")
    naoActor ! Call('ALTextToSpeech, 'say, List("Stehen bleiben!"))
@@ -78,7 +83,7 @@ object NaogatewayApp {
     val options = nextOption(Map('name -> "nila",'config -> ""),arglist)
     implicit  def any2String(a:Any) = a.toString
     if(options.contains('testhost) && options.contains('testport))
-       new SimpleRemoteTest(options('name),options('testhost),options('testport))
+       new SimpleRemoteTest(options('name),options('testhost),options('testport),options('config))
     else  
     	scaleNaoSystem(options('name),options('config))
   }

@@ -118,13 +118,13 @@ Binärdateien sind zu bekommen unter:
 	sbt run
 	
 Über -h gelangt man zur kleinen Hilfe, die beschreibt wie man auf die verschiedenen
-Naos zugreifen kann. Außerdem kann eine Konfigurationsdatei angegeben werden.
+Naos zugreifen kann. Außerdem kann eine Konfigurationsdatei angegeben werden. Standardwerte sind durch = definiert.
  
 	run -h
     Usage: naogateway 
 	  [-n | --name naoname = nila] 
 	  [-c | --config absolutepath = naogateway/src/main/resources/application.conf]
-	  [-t | --test host port]
+	  [-t | --test host = 127.0.0.1 port = 2552]
 	  [-h | --help] 
 
 Angenommen ein naogateway ist gestartet, so kann mit -t ein Say zum testen an 
@@ -145,7 +145,7 @@ der einzelnen Aktoren konfiguriert werden.
 
 	naogateway{
 		hanna {    
-		  nao.host = "127.0.0.1"
+		  nao.host = "192.168.1.11"
 		  nao.name = "Hanna"
 		}
 		nila { 
