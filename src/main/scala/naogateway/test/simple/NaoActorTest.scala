@@ -2,7 +2,7 @@ package test.simple
 
 import com.typesafe.config.ConfigFactory
 import akka.actor.ActorSystem
-import naogateway.scaleNaoSystem
+import naogateway.Gateway
 import akka.actor.ActorRef
 import naogateway.value._
 import naogateway.value.NaoMessages._
@@ -10,7 +10,7 @@ import naogateway.value.NaoMessages.Conversions._
 import akka.actor.Props
 
 object NaoActorTest extends App {
-  val naoActor = scaleNaoSystem("nila").naoActor
+  val naoActor = Gateway("localnila").naoActor
   val system = ActorSystem("TestSystem") 
   system.actorOf(Props[ResponseTestActor])	
   
@@ -22,8 +22,8 @@ object NaoActorTest extends App {
         trace(response)
         trace(noResponse)
         trace(vision)
-//        response ! Call('ALTextToSpeech, 'getVolume)
-        response ! Call('ALTextToSpeech, 'say, List("Stehen bleiben"))
+        response ! Call('ALTextToSpeech, 'getVolume)
+        noResponse ! Call('ALTextToSpeech, 'say, List("Stehen bleiben"))
       }    
       case x => trace(x)
     }

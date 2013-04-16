@@ -3,44 +3,40 @@ package naogateway
 import akka.actor.Actor
 import akka.actor.Props
 
- class HeartBeatActor extends Actor{
+/**
+ * HeartBeatActor is used to know nao connection status
+ * actor use zmq messages to test wheter nao answer before timeout
+ * configuration standard
+ * 	heartbeatactor {
+ * 		online.delay = 1000
+ * 		maybeoffline.delay = 300
+ * 	}
+ * 	heartbeat is very stateful but thats the intention
+ * 	if actor must be restarted nao status is unknown, so start state is
+ * 	the right state
+ */
+class HeartBeatActor extends Actor with Delay with ZMQ with Log {
 
   import naogateway.value._
   import naogateway.value.NaoMessages._
   import naogateway.value.NaoMessages.Conversions
   import context._
-  
+
   def receive = {
-    case nao:Nao => step(nao,online(nao),Online,maybeOffline(nao),MaybeOffline)
+    case nao: Nao => step(nao, online(nao), Online, maybeOffline(nao), MaybeOffline)
   }
-  
-  def maybeOffline(nao:Nao,count:Int = 0):Receive = {
+
+  def maybeOffline(nao: Nao, count: Int = 0): Receive = {
     case Trigger if count <= 3 => {
-      step(nao,online(nao),Online,maybeOffline(nao,count+1),MaybeOffline)    
+      step(nao, online(nao), Online, maybeOffline(nao, count + 1), MaybeOffline)
     }
     case _ => {
-     step(nao,online(nao),Online,receive,Offline)   
+      step(nao, online(nao), Online, receive, Offline)
     }
   }
-  
-  def online(nao:Nao):Receive = {
-    case Trigger => step(nao,online(nao),Online,maybeOffline(nao),MaybeOffline)    
-  }
-    
-    /**
-   * zMQ object contains a ZMQ Context with sockets
-   * only request type of sockets (request reply pattern 
-   * have to be strongly observed) is here allowed
-   */
-  object zMQ {
-    import org.zeromq.ZContext
-    def context = new ZContext
-    def socket(cont: ZContext = context, url: String) = {
-      import org.zeromq.ZMQ._
-      val socket = cont.createSocket(REQ)
-      socket.connect(url)
-      socket
-    }
+
+  def online(nao: Nao): Receive = {
+    case Trigger => step(nao, online(nao), Online, maybeOffline(nao), MaybeOffline)
   }
 
   /**
@@ -50,37 +46,49 @@ import akka.actor.Props
    * wait non blocking on anwser
    */
   import org.zeromq.ZMQ.Socket
-  def step(nao: Nao,suc:PartialFunction[Any,Unit],succMessage:Any,fail:PartialFunction[Any,Unit],failMessage:Any) = {
-	  val c = Call(Module("test"), Method("test"))
-      trace("request: " + c)
-      val socket = zMQ.socket(url = "tcp://" + nao.host + ":" + nao.port)
-      socket.send(request(c).toByteArray, 0)
+  def step(nao: Nao, suc: PartialFunction[Any, Unit], succMessage: Any, fail: PartialFunction[Any, Unit], failMessage: Any) = {
+    val c = Call(Module("test"), Method("test"))
+    val socket = zMQ.socket(nao.host, nao.port)
+    socket.send(request(c).toByteArray, 0)
 
-      import scala.concurrent._
-      val caller = sender
-      val answering = future {
-        socket.recv(0)
+    import scala.concurrent._
+    val caller = sender
+    val answering = future {
+      socket.recv(0)
+    }
+    answering onSuccess {
+      case _ => {
+        socket.close
+        sender ! succMessage
+        delay(on)
+        trace("on")
+        become(suc)
       }
-      answering onSuccess {
-        case _ => {      
-        	socket.close
-        	sender ! succMessage
-        	become(suc)
-        }
+    }
+    answering onFailure {
+      case _ => {
+        socket.close
+        sender ! failMessage
+        delay(off)
+         trace("off")
+        become(fail)
       }
-      answering onFailure {
-        case _ => {      
-        	socket.close
-        	sender ! failMessage
-        	become(fail)
-        }
-      }
+    }
   }
+
+  import scala.concurrent.duration._
+  def delay(d: Duration) = {
+    import context.dispatcher
+    import akka.pattern.after
+    after(2000 millis, using = context.system.scheduler) {
+      import scala.concurrent.Future
+      Future {
+        self ! Trigger
+      }
+    }
+  }
+  val on = context.system.settings.config.getInt("heartbeatactor.online.delay") millis
+  val off = context.system.settings.config.getInt("heartbeatactor.online.delay") millis
   
-  def trace(a: Any) = if (context.system.settings.config.getBoolean("log.heartbeatactor.info")) log.info(a.toString)
-  def error(a: Any) = if (context.system.settings.config.getBoolean("log.heartbeatactor.error")) log.warning(a.toString)
-  def wrongMessage(a: Any, state: String) = if (context.system.settings.config.getBoolean("log.heartbeatactor.wrongMessage")) log.warning("wrong message: " + a + " in " + state)
-  import akka.event.Logging
-  val log = Logging(context.system, this)
   trace("is started ")
 }

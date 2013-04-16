@@ -5,26 +5,30 @@ import akka.actor.Props
 import com.typesafe.config.ConfigFactory
 import java.io.File
 
-//object scaleNaoSystem{
-//  val config = ConfigFactory.load()
-//  val name = "naogateway"
-//  def apply(nao:String = "nila") = {
-//    val system = ActorSystem(name,config.getConfig(name+"."+nao).withFallback(config.getConfig(name)))
-//    system.actorOf(Props[NaoActor].withDispatcher("akka.actor.default-stash-dispatcher"),nao)	
-//  }
-//}
-case class scaleNaoSystem(nao:String = "nila",configPath:String = ""){
+/**
+ * Gateway is a standard start class für naogateway
+ */
+object Gateway{
+  def apply(nao:String = "nila",configPath:String = "") = new Gateway(nao,configPath)
+}
+class Gateway(nao:String,configPath:String){
    val config = {
      configPath match {
        case "" => ConfigFactory.load()
        case x => ConfigFactory.parseFile(new File(x))
      }    
    }
-   val name = "naogateway"
+   val name = NaogatewayApp.name
    val system = ActorSystem(name,config.getConfig(name+"."+nao).withFallback(config.getConfig(name)))
    val naoActor = system.actorOf(Props[NaoActor].withDispatcher("akka.actor.default-stash-dispatcher"),nao)
 }
 
+/**
+ * SimpleRemoteTest ist a very simple test for a started naogateway
+ */
+object SimpleRemoteTest{
+  def apply(nao:String,host:String,port:String,configPath:String = "") = new SimpleRemoteTest(nao,host,port,configPath)
+}
 class SimpleRemoteTest(nao:String,host:String,port:String,configPath:String = "") {  
   import akka.actor.ActorSystem
   import akka.actor.Actor
@@ -35,6 +39,8 @@ class SimpleRemoteTest(nao:String,host:String,port:String,configPath:String = ""
   import naogateway.value.NaoMessages.Conversions._
   import akka.actor.Address
   import naogateway.value.NaoVisionMessages._
+  val servername = NaogatewayApp.name
+  val name = "remoting"
   val config = {
      configPath match {
        case "" => ConfigFactory.load()
@@ -42,17 +48,21 @@ class SimpleRemoteTest(nao:String,host:String,port:String,configPath:String = ""
      }    
    }
   val system = ActorSystem("remoting",config.getConfig("remoting").withFallback(config)) 
-  val naoActor = system.actorFor("akka://naogateway@"+host+":"+port+"/user/"+nao+"/response")
+  val naoActor = system.actorFor("akka://"+servername+"@"+host+":"+port+"/user/"+nao+"/response")
    naoActor ! Call('ALTextToSpeech, 'say, List("Stehen bleiben!"))
  
 }
 
+/**
+ * NaogatewayApp is the main class to start naogateway
+ */
 object NaogatewayApp {
+  val name = "naogateway"
   val usage = """
     Usage: naogateway 
 		  [-n | --name naoname = nila] 
 		  [-c | --config absolutepath = naogateway/src/main/resources/application.conf]
-		  [-t | --test host port]
+		  [-t | --test host = 127.0.0.1 port = 2552]
 		  [-h | --help]
   """
   def main(args: Array[String]) {
@@ -85,6 +95,6 @@ object NaogatewayApp {
     if(options.contains('testhost) && options.contains('testport))
        new SimpleRemoteTest(options('name),options('testhost),options('testport),options('config))
     else  
-    	scaleNaoSystem(options('name),options('config))
+       Gateway(options('name),options('config))
   }
 }

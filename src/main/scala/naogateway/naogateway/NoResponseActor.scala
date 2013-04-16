@@ -8,7 +8,7 @@ import akka.actor.Stash
  * NaoResponseActor send calls to nao 
  * without care of answering
  */
-class NoResponseActor extends Actor with Stash{
+class NoResponseActor extends Actor with Stash with Delay with ZMQ with Log{
 
   import naogateway.value._
   import naogateway.value.NaoMessages._
@@ -28,22 +28,6 @@ class NoResponseActor extends Actor with Stash{
   }
 
   /**
-   * zMQ object contains a ZMQ Context with sockets
-   * only request type of sockets (request reply pattern 
-   * have to be strongly observed) is here allowed
-   */
-  object zMQ {
-    import org.zeromq.ZContext
-    def context = new ZContext
-    def socket(cont: ZContext = context, url: String) = {
-      import org.zeromq.ZMQ._
-      val socket = cont.createSocket(REQ)
-      socket.connect(url)
-      socket
-    }
-  }
-
-  /**
    * In communicating state the actor takes every call and
    * convert to nao proto
    * send it to nao
@@ -55,16 +39,23 @@ class NoResponseActor extends Actor with Stash{
   def communicating(nao: Nao): Receive = {
     case c: Call => {
       trace("request: " + c)
-      val socket = zMQ.socket(url = "tcp://" + nao.host + ":" + nao.port)
-      socket.send(request(c).toByteArray, 0)
-
-      import scala.concurrent._
-      val answering = future {
-        answer(socket.recv(0), c)
-      }
+      val socket = zMQ.socket(nao.host,nao.port)
+      import akka.pattern.after
+      import context.dispatcher
+      import scala.concurrent.duration._ 
+      val caller = sender
+      val answering = after(delay(c.module.title + "." + c.method.title) millis,
+        using = context.system.scheduler) {
+          import scala.concurrent.Future
+          Future {
+            socket.send(request(c).toByteArray, 0)
+            socket.recv(0)
+          }
+        }
       answering onSuccess {
         case x => {
           unstashAll
+          socket.close
           become(communicating(nao))
         }
       }
@@ -79,7 +70,8 @@ class NoResponseActor extends Actor with Stash{
   
   /**
    * If we could use a req compatible socket type like
-   * dealer (only request, no reply), we could use following
+   * dealer (only request, but how many you want, no reply), 
+   * we could use following code but
    * zmq has a bug if someone use other types instead of req
    * to communicate with rep
    * https://zeromq.jira.com/browse/LIBZMQ-211
@@ -124,10 +116,5 @@ class NoResponseActor extends Actor with Stash{
 //    case x => wrongMessage(x, "communicating")
 //  }
 
-  def trace(a: Any) = if (context.system.settings.config.getBoolean("log.noresponseactor.info")) log.info(a.toString)
-  def error(a: Any) = if (context.system.settings.config.getBoolean("log.noresponseactor.error")) log.warning(a.toString)
-  def wrongMessage(a: Any, state: String) = if (context.system.settings.config.getBoolean("log.noresponseactor.wrongMessage")) log.warning("wrong message: " + a + " in " + state)
-  import akka.event.Logging
-  val log = Logging(context.system, this)
   trace("is started ")
 }

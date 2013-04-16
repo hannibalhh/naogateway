@@ -10,7 +10,7 @@ import akka.actor.Actor
  import akka.actor.ActorPathExtractor
  import akka.actor.Stash
 
- class NaoActor extends Actor with Stash{
+ class NaoActor extends Actor with Stash with Log{
 
   import naogateway.value._
   import naogateway.value.NaoMessages._
@@ -48,7 +48,7 @@ import akka.actor.Actor
     case Online => {
       trace(nao + " is online")
       val response = context.actorOf(Props[ResponseActor],"response")
-      val noResponse = context.actorOf(Props[NoResponseActor].withDispatcher("akka.actor.default-stash-dispatcher"),"noResponse")
+      val noResponse = context.actorOf(Props[NoResponseActor].withDispatcher("akka.actor.default-stash-dispatcher"),"noresponse")
       val vision = context.actorOf(Props[VisionActor],"vision")     
       response ! nao
       noResponse ! nao
@@ -71,12 +71,6 @@ import akka.actor.Actor
     case x => wrongMessage(x, "communicating")
   }
   
-  def trace(a: Any) = if (context.system.settings.config.getBoolean("log.naoactor.info")) log.info(a.toString)
-  def error(a: Any) = if (context.system.settings.config.getBoolean("log.naoactor.error")) log.warning(a.toString)
-  def wrongMessage(a: Any, state: String) = if (context.system.settings.config.getBoolean("log.naoactor.wrongMessage")) log.warning("wrong message: " + a + " in " + state)
-  import akka.event.Logging
-  val log = Logging(context.system, this)
   trace("is started ")
-
 }
 

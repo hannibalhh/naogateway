@@ -1,7 +1,7 @@
 package test.remote
 
-import naogateway.scaleNaoSystem
+import naogateway.Gateway
 
 object NaogatewayStarter extends App{
-  scaleNaoSystem("nila")
+  Gateway("nila")
 }

@@ -2,7 +2,10 @@ package naogateway
 import akka.actor.Actor
 import akka.actor.ActorRef
 
-class VisionActor extends Actor{
+/**
+ * VisionActor communicates with HAWCamActor on nao with ZMQ
+ */
+class VisionActor extends Actor with Log with ZMQ{
 
   import naogateway.value._
   import naogateway.value.NaoVisionMessages._
@@ -21,22 +24,6 @@ class VisionActor extends Actor{
   }
 
   /**
-   * zMQ object contains a ZMQ Context with sockets
-   * only request type of sockets (request reply pattern 
-   * have to be strongly observed) is here allowed
-   */
-  object zMQ {
-    import org.zeromq.ZContext
-    def context = new ZContext
-    def socket(cont: ZContext = context, url: String) = {
-      import org.zeromq.ZMQ._
-      val socket = cont.createSocket(REQ)
-      socket.connect(url)
-      socket
-    }
-  }
-
-  /**
    * In communicating state the actor takes every call and
    * convert to nao proto
    * send it to nao
@@ -46,7 +33,7 @@ class VisionActor extends Actor{
   def communicating(nao: Nao): Receive = {
     case c: VisionCall => {
       trace("request: " + c)
-      val socket = zMQ.socket(url = "tcp://" + nao.host + ":" + nao.port)
+      val socket = zMQ.socket(nao.host,nao.port)
       socket.send(request(c).toByteArray, 0)
 
       import scala.concurrent._
@@ -64,7 +51,7 @@ class VisionActor extends Actor{
     }
     case c: RawVisionCall => {
       trace("request: " + c)
-      val socket = zMQ.socket(url = "tcp://" + nao.host + ":" + nao.port)
+      val socket = zMQ.socket(nao.host,nao.port)
       socket.send(request(c).toByteArray, 0)
 
       import scala.concurrent._
@@ -83,10 +70,5 @@ class VisionActor extends Actor{
     case x => wrongMessage(x, "communicating")
   }
 
-  def trace(a: Any) = if (context.system.settings.config.getBoolean("log.visionactor.info")) log.info(a.toString)
-  def error(a: Any) = if (context.system.settings.config.getBoolean("log.visionactor.error")) log.warning(a.toString)
-  def wrongMessage(a: Any, state: String) = if (context.system.settings.config.getBoolean("log.visionactor.wrongMessage")) log.warning("wrong message: " + a + " in " + state)
-  import akka.event.Logging
-  val log = Logging(context.system, this)
   trace("is started ")
 }
