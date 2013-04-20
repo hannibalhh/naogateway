@@ -93,7 +93,7 @@ object NaogatewayApp {
     val options = nextOption(Map('name -> "nila",'config -> ""),arglist)
     implicit  def any2String(a:Any) = a.toString
     if(options.contains('testhost) && options.contains('testport))
-       new SimpleRemoteTest(options('name),options('testhost),options('testport),options('config))
+       SimpleRemoteTest(options('name),options('testhost),options('testport),options('config))
     else  
        Gateway(options('name),options('config))
   }

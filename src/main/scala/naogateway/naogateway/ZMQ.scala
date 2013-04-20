@@ -1,6 +1,5 @@
 package naogateway
 
-
 /**
  * Simple trait for actors which want to use ZMQ
  */

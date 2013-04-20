@@ -1,0 +1,320 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>naogateway - naogateway</title>
+          <meta name="description" content="naogateway - naogateway" />
+          <meta name="keywords" content="naogateway naogateway" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../lib/template.js"></script>
+      <script type="text/javascript" src="../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../index.html';
+            var hash = 'naogateway.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../lib/package_big.png" />
+        
+        <h1>naogateway</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">naogateway</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="naogateway.Delay" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="DelayextendsAnyRef"></a>
+      <a id="Delay:Delay"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Delay.html"><span class="name">Delay</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Delay communication for actors by configuration
+</p>
+    </li><li name="naogateway.Gateway" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="GatewayextendsAnyRef"></a>
+      <a id="Gateway:Gateway"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Gateway.html"><span class="name">Gateway</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="naogateway.HeartBeatActor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HeartBeatActorextendsActorwithZMQwithLog"></a>
+      <a id="HeartBeatActor:HeartBeatActor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="HeartBeatActor.html"><span class="name">HeartBeatActor</span></a><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span> with <a href="ZMQ.html" class="extype" name="naogateway.ZMQ">ZMQ</a> with <a href="Log.html" class="extype" name="naogateway.Log">Log</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">HeartBeatActor is used to know nao connection status
+actor use zmq messages to test wheter nao answer before timeout
+configuration standard
+	heartbeatactor {
+		online.</p>
+    </li><li name="naogateway.Log" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LogextendsActor"></a>
+      <a id="Log:Log"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Log.html"><span class="name">Log</span></a><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Easy Logging for Actor combined with configuration like
+	log {
+	   naoactor{
+		info = true
+		error = true
+		wrongMessage = true
+	  }
+	}
+</p>
+    </li><li name="naogateway.NaoActor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NaoActorextendsActorwithStashwithLog"></a>
+      <a id="NaoActor:NaoActor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="NaoActor.html"><span class="name">NaoActor</span></a><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span> with <span class="extype" name="akka.actor.Stash">Stash</span> with <a href="Log.html" class="extype" name="naogateway.Log">Log</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="naogateway.NoResponseActor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NoResponseActorextendsActorwithStashwithDelaywithZMQwithLog"></a>
+      <a id="NoResponseActor:NoResponseActor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="NoResponseActor.html"><span class="name">NoResponseActor</span></a><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span> with <span class="extype" name="akka.actor.Stash">Stash</span> with <a href="Delay.html" class="extype" name="naogateway.Delay">Delay</a> with <a href="ZMQ.html" class="extype" name="naogateway.ZMQ">ZMQ</a> with <a href="Log.html" class="extype" name="naogateway.Log">Log</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">NaoResponseActor send calls to nao
+without care of answering
+</p>
+    </li><li name="naogateway.ResponseActor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ResponseActorextendsActorwithDelaywithZMQwithLog"></a>
+      <a id="ResponseActor:ResponseActor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ResponseActor.html"><span class="name">ResponseActor</span></a><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span> with <a href="Delay.html" class="extype" name="naogateway.Delay">Delay</a> with <a href="ZMQ.html" class="extype" name="naogateway.ZMQ">ZMQ</a> with <a href="Log.html" class="extype" name="naogateway.Log">Log</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">NaoResponseActor send calls to nao and send the answer to caller
+</p>
+    </li><li name="naogateway.SimpleRemoteTest" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SimpleRemoteTestextendsAnyRef"></a>
+      <a id="SimpleRemoteTest:SimpleRemoteTest"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="SimpleRemoteTest.html"><span class="name">SimpleRemoteTest</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="naogateway.VisionActor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="VisionActorextendsActorwithLogwithZMQ"></a>
+      <a id="VisionActor:VisionActor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="VisionActor.html"><span class="name">VisionActor</span></a><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span> with <a href="Log.html" class="extype" name="naogateway.Log">Log</a> with <a href="ZMQ.html" class="extype" name="naogateway.ZMQ">ZMQ</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">VisionActor communicates with HAWCamActor on nao with ZMQ
+</p>
+    </li><li name="naogateway.ZMQ" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ZMQextendsAnyRef"></a>
+      <a id="ZMQ:ZMQ"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ZMQ.html"><span class="name">ZMQ</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Simple trait for actors which want to use ZMQ
+</p>
+    </li><li name="naogateway.ZMQAdapter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ZMQAdapterextendsAnyRef"></a>
+      <a id="ZMQAdapter:ZMQAdapter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ZMQAdapter.html"><span class="name">ZMQAdapter</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">zMQ object contains a ZMQ Context with sockets
+only request type of sockets (request reply pattern
+have to be strongly observed) is here allowed
+</p>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="naogateway.Gateway" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Gateway"></a>
+      <a id="Gateway:Gateway"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Gateway$.html"><span class="name">Gateway</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Gateway is a standard start class für naogateway
+</p>
+    </li><li name="naogateway.NaogatewayApp" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NaogatewayApp"></a>
+      <a id="NaogatewayApp:NaogatewayApp"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="NaogatewayApp$.html"><span class="name">NaogatewayApp</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">NaogatewayApp is the main class to start naogateway
+</p>
+    </li><li name="naogateway.SimpleRemoteTest" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SimpleRemoteTest"></a>
+      <a id="SimpleRemoteTest:SimpleRemoteTest"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="SimpleRemoteTest$.html"><span class="name">SimpleRemoteTest</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">SimpleRemoteTest ist a very simple test for a started naogateway
+</p>
+    </li><li name="naogateway.value" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="value"></a>
+      <a id="value:value"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="value/package.html"><span class="name">value</span></a>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

@@ -2,7 +2,16 @@
 
 Make a naoqi API available in scala with akka, protobuf and zeromq under the hood
 
-### Installationsanleitung 
+### Überblick
+
+Das Aktorensystem naogateway ist ein Kommunikationsmedium zum
+Kommunizieren mit dem Nao. Wer ein vorhandenes naogateway Aktorensystem
+ansprechen möchte, sollte einen Blick in das Repository
+https://github.com/hannibalhh/naogatewayRemoteClient werfen.
+Das Scaladoc ist unter
+https://github.com/hannibalhh/naogateway/doc zu finden.
+
+### Installationsanleitung für eine Ubuntu VM
 
 - VirtualBox 4.2
 - Neue Maschine -> Linux->Ubuntu 12.10 64Bit
@@ -193,7 +202,20 @@ der einzelnen Aktoren konfiguriert werden.
 			wrongMessage = true
 		  }  
 		}
+		responseactor.delay {
+			altexttospeech.say = 5
+			altexttospeech.getvolume = 4
+		}
+		heartbeatactor {
+			online.delay = 1000
+			maybeoffline.delay = 300
+		}
 	}
+	
+Für responseactor und noreponseactor können Verzögerungen definiert werden.
+Dazu wird die Syntax modulname.methodenname = value in ms verwendet. Diese Angabe ist
+optional. Standardwert ist 0 ms. Ebenso kann der Heartbeat konfiguriert werden, wobei
+dort statt der Methoden die Zustände online und maybeoffline definiert werden.
 
 Um mit dem naogateway zu kommunzieren, muss auch eine kleine Konfiguration
 vorgenommen werden. Folgedes Beispiel kann dafür übernommen werden. 
