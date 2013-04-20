@@ -9,7 +9,7 @@ Kommunizieren mit dem Nao. Wer ein vorhandenes naogateway Aktorensystem
 ansprechen möchte, sollte einen Blick in das Repository
 https://github.com/hannibalhh/naogatewayRemoteClient werfen.
 Das Scaladoc ist unter
-https://github.com/hannibalhh/naogateway/doc zu finden.
+https://github.com/hannibalhh/naogateway/tree/master/doc zu finden.
 
 ### Installationsanleitung für eine Ubuntu VM
 
