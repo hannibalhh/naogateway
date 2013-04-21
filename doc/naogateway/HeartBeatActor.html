@@ -40,7 +40,7 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">HeartBeatActor</span><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span> with <a href="ZMQ.html" class="extype" name="naogateway.ZMQ">ZMQ</a> with <a href="Log.html" class="extype" name="naogateway.Log">Log</a></span>
+        <span class="name">HeartBeatActor</span><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span> with <a href="Log.html" class="extype" name="naogateway.Log">Log</a></span>
       </span>
       </h4>
       
@@ -56,7 +56,7 @@ configuration standard
 	the right state
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="Log.html" class="extype" name="naogateway.Log">Log</a>, <a href="ZMQ.html" class="extype" name="naogateway.ZMQ">ZMQ</a>, <span class="extype" name="akka.actor.Actor">Actor</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="Log.html" class="extype" name="naogateway.Log">Log</a>, <span class="extype" name="akka.actor.Actor">Actor</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -74,7 +74,7 @@ configuration standard
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="naogateway.HeartBeatActor"><span>HeartBeatActor</span></li><li class="in" name="naogateway.Log"><span>Log</span></li><li class="in" name="naogateway.ZMQ"><span>ZMQ</span></li><li class="in" name="akka.actor.Actor"><span>Actor</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="naogateway.HeartBeatActor"><span>HeartBeatActor</span></li><li class="in" name="naogateway.Log"><span>Log</span></li><li class="in" name="akka.actor.Actor"><span>Actor</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -360,20 +360,22 @@ configuration standard
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Log.html" class="extype" name="naogateway.Log">Log</a></dd></dl></div>
     </li><li name="naogateway.HeartBeatActor#maybeOffline" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="maybeOffline(nao:naogateway.value.Nao,count:Int):HeartBeatActor.this.Receive"></a>
-      <a id="maybeOffline(Nao,Int):Receive"></a>
+      <a id="maybeOffline(nao:naogateway.value.Nao,caller:akka.actor.ActorRef,count:Int):HeartBeatActor.this.Receive"></a>
+      <a id="maybeOffline(Nao,ActorRef,Int):Receive"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">maybeOffline</span><span class="params">(<span name="nao">nao: <a href="value/Nao.html" class="extype" name="naogateway.value.Nao">Nao</a></span>, <span name="count">count: <span class="extype" name="scala.Int">Int</span> = <span class="symbol">0</span></span>)</span><span class="result">: <a href="#Receive=akka.actor.Actor.Receive" class="extmbr" name="naogateway.HeartBeatActor.Receive">Receive</a></span>
+        <span class="name">maybeOffline</span><span class="params">(<span name="nao">nao: <a href="value/Nao.html" class="extype" name="naogateway.value.Nao">Nao</a></span>, <span name="caller">caller: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>, <span name="count">count: <span class="extype" name="scala.Int">Int</span> = <span class="symbol">0</span></span>)</span><span class="result">: <a href="#Receive=akka.actor.Actor.Receive" class="extmbr" name="naogateway.HeartBeatActor.Receive">Receive</a></span>
       </span>
       </h4>
       <p class="shortcomment cmt">maybeoffline is a state which suppose that nao is not online
 but give the nao up to 3 chances
-</p>
+one chance is used to go in maybeoffline, the last chance send on
+fail a Offline message instead of a MaybeOffline message,
+because of that couting is offlineTimes-2 times by start at 0.</p>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -426,6 +428,19 @@ but give the nao up to 3 chances
       </span>
       </h4>
       
+    </li><li name="naogateway.HeartBeatActor#offlineTimes" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="offlineTimes:Int"></a>
+      <a id="offlineTimes:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">offlineTimes</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      
     </li><li name="naogateway.HeartBeatActor#on" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="on:scala.concurrent.duration.FiniteDuration"></a>
       <a id="on:FiniteDuration"></a>
@@ -440,15 +455,15 @@ but give the nao up to 3 chances
       </h4>
       
     </li><li name="naogateway.HeartBeatActor#online" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="online(nao:naogateway.value.Nao):HeartBeatActor.this.Receive"></a>
-      <a id="online(Nao):Receive"></a>
+      <a id="online(nao:naogateway.value.Nao,caller:akka.actor.ActorRef):HeartBeatActor.this.Receive"></a>
+      <a id="online(Nao,ActorRef):Receive"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">online</span><span class="params">(<span name="nao">nao: <a href="value/Nao.html" class="extype" name="naogateway.value.Nao">Nao</a></span>)</span><span class="result">: <a href="#Receive=akka.actor.Actor.Receive" class="extmbr" name="naogateway.HeartBeatActor.Receive">Receive</a></span>
+        <span class="name">online</span><span class="params">(<span name="nao">nao: <a href="value/Nao.html" class="extype" name="naogateway.value.Nao">Nao</a></span>, <span name="caller">caller: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>)</span><span class="result">: <a href="#Receive=akka.actor.Actor.Receive" class="extmbr" name="naogateway.HeartBeatActor.Receive">Receive</a></span>
       </span>
       </h4>
       <p class="shortcomment cmt">online state suppose nao is online and wait on next trigger
@@ -520,6 +535,19 @@ but give the nao up to 3 chances
       <p class="shortcomment cmt">start state is waiting on nao connecting information
 </p><div class="fullcomment"><div class="comment cmt"><p>start state is waiting on nao connecting information
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="naogateway.HeartBeatActor">HeartBeatActor</a> → Actor</dd></dl></div>
+    </li><li name="naogateway.HeartBeatActor#response" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="response:akka.actor.ActorRef"></a>
+      <a id="response:ActorRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">response</span><span class="result">: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>
+      </span>
+      </h4>
+      
     </li><li name="akka.actor.Actor#self" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="self:akka.actor.ActorRef"></a>
       <a id="self:ActorRef"></a>
@@ -547,15 +575,15 @@ but give the nao up to 3 chances
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Actor</dd></dl></div>
     </li><li name="naogateway.HeartBeatActor#step" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="step(nao:naogateway.value.Nao,suc:PartialFunction[Any,Unit],succMessage:Any,fail:PartialFunction[Any,Unit],failMessage:Any,timeout:scala.concurrent.duration.FiniteDuration):Unit"></a>
-      <a id="step(Nao,PartialFunction[Any,Unit],Any,PartialFunction[Any,Unit],Any,FiniteDuration):Unit"></a>
+      <a id="step(nao:naogateway.value.Nao,suc:PartialFunction[Any,Unit],succMessage:Any,fail:PartialFunction[Any,Unit],failMessage:Any,d:scala.concurrent.duration.FiniteDuration,caller:akka.actor.ActorRef):Unit"></a>
+      <a id="step(Nao,PartialFunction[Any,Unit],Any,PartialFunction[Any,Unit],Any,FiniteDuration,ActorRef):Unit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">step</span><span class="params">(<span name="nao">nao: <a href="value/Nao.html" class="extype" name="naogateway.value.Nao">Nao</a></span>, <span name="suc">suc: <span class="extype" name="scala.PartialFunction">PartialFunction</span>[<span class="extype" name="scala.Any">Any</span>, <span class="extype" name="scala.Unit">Unit</span>]</span>, <span name="succMessage">succMessage: <span class="extype" name="scala.Any">Any</span></span>, <span name="fail">fail: <span class="extype" name="scala.PartialFunction">PartialFunction</span>[<span class="extype" name="scala.Any">Any</span>, <span class="extype" name="scala.Unit">Unit</span>]</span>, <span name="failMessage">failMessage: <span class="extype" name="scala.Any">Any</span></span>, <span name="timeout">timeout: <span class="extype" name="scala.concurrent.duration.FiniteDuration">FiniteDuration</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">step</span><span class="params">(<span name="nao">nao: <a href="value/Nao.html" class="extype" name="naogateway.value.Nao">Nao</a></span>, <span name="suc">suc: <span class="extype" name="scala.PartialFunction">PartialFunction</span>[<span class="extype" name="scala.Any">Any</span>, <span class="extype" name="scala.Unit">Unit</span>]</span>, <span name="succMessage">succMessage: <span class="extype" name="scala.Any">Any</span></span>, <span name="fail">fail: <span class="extype" name="scala.PartialFunction">PartialFunction</span>[<span class="extype" name="scala.Any">Any</span>, <span class="extype" name="scala.Unit">Unit</span>]</span>, <span name="failMessage">failMessage: <span class="extype" name="scala.Any">Any</span></span>, <span name="d">d: <span class="extype" name="scala.concurrent.duration.FiniteDuration">FiniteDuration</span></span>, <span name="caller">caller: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4>
       
@@ -685,19 +713,6 @@ but give the nao up to 3 chances
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Log.html" class="extype" name="naogateway.Log">Log</a></dd></dl></div>
-    </li><li name="naogateway.ZMQ#zMQ" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="zMQ:naogateway.ZMQAdapter"></a>
-      <a id="zMQ:ZMQAdapter"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">zMQ</span><span class="result">: <a href="ZMQAdapter.html" class="extype" name="naogateway.ZMQAdapter">ZMQAdapter</a></span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ZMQ.html" class="extype" name="naogateway.ZMQ">ZMQ</a></dd></dl></div>
     </li></ol>
             </div>
 
@@ -709,8 +724,6 @@ but give the nao up to 3 chances
         <div id="inheritedMembers">
         <div class="parent" name="naogateway.Log">
               <h3>Inherited from <a href="Log.html" class="extype" name="naogateway.Log">Log</a></h3>
-            </div><div class="parent" name="naogateway.ZMQ">
-              <h3>Inherited from <a href="ZMQ.html" class="extype" name="naogateway.ZMQ">ZMQ</a></h3>
             </div><div class="parent" name="akka.actor.Actor">
               <h3>Inherited from <span class="extype" name="akka.actor.Actor">Actor</span></h3>
             </div><div class="parent" name="scala.AnyRef">

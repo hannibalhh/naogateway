@@ -26,18 +26,18 @@ import akka.actor.Actor
 		  		context.system.settings.config.getInt("nao.camport"))
   
 
-  /**
-   * Because of no finished HeartBeatActor implementation at this time
-   * NaoActor sends the positive HeartBat Online message
-   */		  
-  override def preStart = self ! Online
-
 //  /**
-//   * HeartBeat actor checks the connection state
-//   * HeartBeat need the connecting information for starting
-//   */	  
-//  val heartbeat = context.actorOf(Props[HeartBeatActor])
-//  override def preStart = heartbeat ! nao
+//   * Because of no finished HeartBeatActor implementation at this time
+//   * NaoActor sends the positive HeartBat Online message
+//   */		  
+//  override def preStart = self ! Online
+
+  /**
+   * HeartBeat actor checks the connection state
+   * HeartBeat need the connecting information for starting
+   */	  
+  val heartbeat = context.actorOf(Props[HeartBeatActor],"HeartBeat")
+  override def preStart = heartbeat ! nao
 		  		
   /**
    * In the start state actor wait for HeartBeat
@@ -56,6 +56,8 @@ import akka.actor.Actor
       unstashAll
       become(communicating(response,noResponse,vision))
     }
+    case Offline => throw new Exception("nao is not available")
+    case MaybeOffline =>
     case Connect => stash
     case x => wrongMessage(x, "receive")
   }
@@ -68,6 +70,8 @@ import akka.actor.Actor
     case Connect => {
       sender ! (response,noResponse,vision)
     }
+    case Offline => throw new Exception("nao is not available")
+    case Online | MaybeOffline =>
     case x => wrongMessage(x, "communicating")
   }
   

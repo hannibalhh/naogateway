@@ -2,6 +2,7 @@ package naogateway
 
 import akka.actor.Actor
 import akka.actor.Props
+import akka.actor.ActorRef
 
 /**
  * HeartBeatActor is used to know nao connection status
@@ -15,7 +16,10 @@ import akka.actor.Props
  * 	if actor must be restarted nao status is unknown, so start state is
  * 	the right state
  */
-class HeartBeatActor extends Actor with ZMQ with Log {
+class HeartBeatActor extends Actor with Log {
+
+  val offlineTimes = 3
+  val response = context.actorOf(Props[ResponseActor], "response")
 
   import naogateway.value._
   import naogateway.value.NaoMessages._
@@ -26,112 +30,68 @@ class HeartBeatActor extends Actor with ZMQ with Log {
    * start state is waiting on nao connecting information
    */
   def receive = {
-    case nao: Nao => step(nao, online(nao), Online, maybeOffline(nao), MaybeOffline, on)
+    case nao: Nao => {
+      response ! nao
+      step(nao, online(nao,sender), Online, maybeOffline(nao,sender), MaybeOffline, on,sender)
+    }
   }
 
   /**
    * maybeoffline is a state which suppose that nao is not online
    * but give the nao up to 3 chances
+   * one chance is used to go in maybeoffline, the last chance send on 
+   * fail a Offline message instead of a MaybeOffline message,
+   * because of that couting is offlineTimes-2 times by start at 0.
    */
-  def maybeOffline(nao: Nao, count: Int = 0): Receive = {
-    case Trigger if count <= 3 => {
-      step(nao, online(nao), Online, maybeOffline(nao, count + 1), MaybeOffline, off)
+  def maybeOffline(nao: Nao, caller:ActorRef,count: Int = 0): Receive = {
+    case Trigger if count < offlineTimes-2 => {
+      step(nao, online(nao,caller), Online, maybeOffline(nao,caller, count + 1), MaybeOffline, off,caller)
     }
     case _ => {
-      step(nao, online(nao), Online, receive, Offline, off)
+      step(nao, online(nao,caller), Online, receive, Offline, off,caller)
     }
   }
 
   /**
    * online state suppose nao is online and wait on next trigger
    */
-  def online(nao: Nao): Receive = {
-    case Trigger => step(nao, online(nao), Online, maybeOffline(nao), MaybeOffline, on)
+  def online(nao: Nao,caller:ActorRef): Receive = {
+    case Trigger => step(nao, online(nao,caller), Online, maybeOffline(nao,caller), MaybeOffline, on,caller)
   }
 
   /**
    * In communicating state the actor takes every call and
    * convert to nao proto
-   * send it to nao
-   * wait non blocking on anwser
+   * send it to nao with response actor
+   * wait non blocking on anwser with ask pattern
+   * you have to define parameter for success and fail
+   * next state, message to sender and timeout duration
    */
   import scala.concurrent.duration._
   import org.zeromq.ZMQ.Socket
-  def step(nao: Nao, suc: PartialFunction[Any, Unit], succMessage: Any, fail: PartialFunction[Any, Unit], failMessage: Any, timeout: FiniteDuration) = {
+  def step(nao: Nao, suc: PartialFunction[Any, Unit], succMessage: Any, fail: PartialFunction[Any, Unit], failMessage: Any, d: FiniteDuration,caller:ActorRef) = {
     val c = Call(Module("test"), Method("test"))
-    val socket = zMQ.socket(nao.host, nao.port)
-    socket.send(request(c).toByteArray, 0)
+    import scala.concurrent.Await
+    import akka.pattern.ask
+    import akka.util.Timeout
+    import scala.concurrent.duration._
+    implicit val timeout = Timeout(d)
+    val answering = response ? c
 
-    import scala.concurrent._
-    val caller = sender
-    val answering = future {
-      Future {
-        socket.recv(0)
+    answering onSuccess {
+      case _ => {
+        caller ! succMessage
+        delay(on)
+        become(suc)
       }
     }
-    try {
-      val ts = Await.ready(answering, timeout).fallbackTo {
-        Future {
-          trace("!!!!")
-
-          sender ! failMessage
-          delay(off)
-          trace("off")
-          become(fail)
-        }
-
+    answering onFailure {
+      case _ => {
+        caller ! failMessage
+        delay(off)
+        become(fail)
       }
-      ts onSuccess {
-          case _ => {
-            //        socket.close
-            sender ! succMessage
-            delay(on)
-            trace("on")
-            become(suc)
-          }
-        }
     }
-
-    //    import context.dispatcher
-    //    import akka.pattern.after   
-    //    after(timeout, using = context.system.scheduler) {
-    //      import scala.concurrent.Future
-    //      Future {
-    //        if (answering.isCompleted){
-    //	        socket.close
-    //	        sender ! succMessage
-    //	        delay(on)
-    //	        trace("on")
-    //	        become(suc)
-    //        }
-    //        else {
-    //	         socket.close
-    //	        sender ! failMessage
-    //	        delay(off)
-    //	         trace("off")
-    //	        become(fail)         
-    //        }
-    //      }
-    //    }
-
-    //    answering onSuccess {
-    //      case _ => {
-    ////        socket.close
-    //        sender ! succMessage
-    //        delay(on)
-    //        trace("on")
-    //        become(suc)
-    //      }
-    //    }
-    //    answering onFailure {
-    //      case _ => {
-    //        socket.close
-    //        sender ! failMessage
-    //        delay(off)
-    //        trace("off")
-    //        become(fail)
-    //      }
-    //    }
   }
 
   /**
