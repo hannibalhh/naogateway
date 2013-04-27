@@ -3,6 +3,9 @@ package naogateway
 import akka.actor.Actor
 import akka.actor.ActorRef
 import akka.actor.Stash
+import naogateway.traits.Delay
+import naogateway.traits.ZMQ
+import naogateway.traits.Log
 
 /**
  * NaoResponseActor send calls to nao 
@@ -39,7 +42,7 @@ class NoResponseActor extends Actor with Stash with Delay with ZMQ with Log{
   def communicating(nao: Nao): Receive = {
     case c: Call => {
       trace("request: " + c)
-      val socket = zMQ.socket(nao.host,nao.port)
+      val socket = zmqsocket(nao.host,nao.port)
       import akka.pattern.after
       import context.dispatcher
       import scala.concurrent.duration._ 

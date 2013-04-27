@@ -9,11 +9,16 @@ import naogateway.value.NaoMessages.Conversions._
 import akka.actor.Address
 import naogateway.value.NaoVisionMessages._
 
+/**
+ * RemoteTest is a runnable client appliction to send 
+ * some calls to naogateway, it uses namespace remoting in configuration
+ * You need same network of naogateway
+ */
 object RemoteTest extends App{  
   val config = ConfigFactory.load()
   val system = ActorSystem("remoting",config.getConfig("remoting").withFallback(config))
  
-  val naoActor = system.actorFor("akka://naogateway@192.168.56.101:2552/user/nila")
+  val naoActor = system.actorFor("akka://naogateway@172.0.0.1:2552/user/localnila")
   println(naoActor)
   system.actorOf(Props[MyResponseTestActor])	
   
@@ -25,9 +30,9 @@ object RemoteTest extends App{
         trace(response)
         trace(noResponse)
         trace(vision)
-//         response ! Call('ALTextToSpeech, 'getVolume)
-//         response ! Call('ALTextToSpeech, 'getVolume)
-        noResponse ! Call('ALTextToSpeech, 'say, List("Stehen bleiben!"))
+//        response ! Call('ALTextToSpeech, 'getVolume)
+//        response ! Call('ALTextToSpeech, 'getVolume)
+//        noResponse ! Call('ALTextToSpeech, 'say, List("Stehen bleiben!"))
 //        response ! Call('ALTextToSpeech, 'say, List("Stehen bleiben!"))
 //        vision ! VisionCall(Resolutions.k4VGA,ColorSpaces.kBGR,Frames._20)
 //        vision ! RawVisionCall(Resolutions.k4VGA,ColorSpaces.kBGR,Frames._20)

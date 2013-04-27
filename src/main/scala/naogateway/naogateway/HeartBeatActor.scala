@@ -3,6 +3,7 @@ package naogateway
 import akka.actor.Actor
 import akka.actor.Props
 import akka.actor.ActorRef
+import naogateway.traits.Log
 
 /**
  * HeartBeatActor is used to know nao connection status
@@ -100,10 +101,10 @@ class HeartBeatActor extends Actor with Log {
    * will be start after duration by execution context
    */
   import scala.concurrent.duration._
-  def delay(d: Duration) = {
+  def delay(d: FiniteDuration) = {
     import context.dispatcher
     import akka.pattern.after
-    after(2000 millis, using = context.system.scheduler) {
+    after(d, using = context.system.scheduler) {
       import scala.concurrent.Future
       Future {
         self ! Trigger
@@ -112,6 +113,6 @@ class HeartBeatActor extends Actor with Log {
   }
   val on = context.system.settings.config.getInt("heartbeatactor.online.delay") millis
   val off = context.system.settings.config.getInt("heartbeatactor.online.delay") millis
-
+  
   trace("is started ")
 }

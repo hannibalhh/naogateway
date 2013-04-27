@@ -9,7 +9,12 @@ import naogateway.ResponseActor
 import akka.actor.ActorSystem
 import naogateway.value.Nao
 
-
+/**
+ * A local runnable test of ResponseActor
+ * starts one of some test actors   
+ * make many say calls to response actor
+ * you can test that answers of different calls could be identified
+ */
 object ResponseTest extends App {
 
   val system = ActorSystem("scaleNao")
@@ -24,8 +29,6 @@ object ResponseTest extends App {
 
   class ResponseTestActor extends TestActor {
     override def preStart = {
-//      for (i <- 0 to 100)
-//        responseActor ! Call('ALTextToSpeech, 'getVolume)
         responseActor ! Call('ALTextToSpeech, 'say, List("One"))
     }
     def receive = {

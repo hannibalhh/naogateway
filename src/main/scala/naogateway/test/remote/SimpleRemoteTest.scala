@@ -9,7 +9,13 @@ package test.remote
   import naogateway.value.NaoMessages._
   import naogateway.value.NaoMessages.Conversions._
   import naogateway.value.NaoVisionMessages._
-  
+
+/**
+ * RemoteTest is a runnable client appliction to send 
+ * some calls to naogateway, it uses namespace remoting in configuration
+ * You need same network of naogateway
+ * This example maximized small and without an actor
+ */
 object SimpleRemoteTest extends App  {
     val host = "192.168.1.100"
     val port = "2552" 

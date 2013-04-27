@@ -10,6 +10,11 @@ import akka.dispatch.UnboundedDequeBasedMailbox
 import com.typesafe.config.ConfigFactory
 import akka.actor.ActorSystem
 
+/**
+ * A local runnable test of NoResponseActor
+ * starts a test actor ResponseTestActor  
+ * make many say calls to noresponse actor
+ */
 object NoResponseTest extends App {
 
   val system = ActorSystem("scaleNao")

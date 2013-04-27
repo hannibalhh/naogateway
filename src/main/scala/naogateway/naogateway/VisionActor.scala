@@ -1,6 +1,8 @@
 package naogateway
 import akka.actor.Actor
 import akka.actor.ActorRef
+import naogateway.traits.ZMQ
+import naogateway.traits.Log
 
 /**
  * VisionActor communicates with HAWCamActor on nao with ZMQ
@@ -33,7 +35,7 @@ class VisionActor extends Actor with Log with ZMQ{
   def communicating(nao: Nao): Receive = {
     case c: VisionCall => {
       trace("request: " + c)
-      val socket = zMQ.socket(nao.host,nao.port)
+      val socket = zmqsocket(nao.host,nao.port)
       socket.send(request(c).toByteArray, 0)
 
       import scala.concurrent._
@@ -51,7 +53,7 @@ class VisionActor extends Actor with Log with ZMQ{
     }
     case c: RawVisionCall => {
       trace("request: " + c)
-      val socket = zMQ.socket(nao.host,nao.port)
+      val socket = zmqsocket(nao.host,nao.port)
       socket.send(request(c).toByteArray, 0)
 
       import scala.concurrent._

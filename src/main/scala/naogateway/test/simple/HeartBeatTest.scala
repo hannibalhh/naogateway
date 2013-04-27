@@ -6,6 +6,12 @@ import akka.actor.Props
 import naogateway.HeartBeatActor
 import naogateway.value.Nao
 
+/**
+ * A local runnable test of HeartBeatActor
+ * starts a gateway
+ * starts a heartbeat manually in gateway
+ * send heartbeat the connecting information from config
+ */
 object HeartBeatTest extends App{
 
   val gateway = Gateway("localnila")

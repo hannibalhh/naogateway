@@ -107,6 +107,7 @@ object NaoMessages {
           case x: Int => mixedVal.addArray(x)
           case x: Float => mixedVal.addArray(x)
           case x: Boolean => mixedVal.addArray(x)
+          case x: Byte => mixedVal.addArray(x)
           case x => throw new UnsupportedOperationException(x.getClass.toString + " is not allowed")
         }
       mixedVal.build()
@@ -119,6 +120,7 @@ object NaoMessages {
           case x: Int => mixedVal.addArray(x)
           case x: Float => mixedVal.addArray(x)
           case x: Boolean => mixedVal.addArray(x)
+          case x: Byte => mixedVal.addArray(x)
           case x: String => mixedVal.addArray(x)
           case x => {
             println("invalid value: " + value)
@@ -170,14 +172,6 @@ object NaoMessages {
       s.append("]")
       s.toString
     } else "Empty"
-  }
-
-  class InvalidValueException(message: String, cause: Throwable)
-    extends RuntimeException(message) {
-    if (cause != null)
-      initCause(cause)
-
-    def this(message: String) = this(message, null)
   }
 
 }
