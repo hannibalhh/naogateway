@@ -89,7 +89,7 @@
       </span>
       </h4>
       <p class="comment cmt">HeartBeatActor is used to know nao connection status
-actor use zmq messages to test wheter nao answer before timeout
+actor use zmq messages to test whether nao answer before timeout
 configuration standard
 	heartbeatactor {
 		online.</p>
@@ -107,7 +107,7 @@ configuration standard
       </h4>
       
     </li><li name="naogateway.NoResponseActor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="NoResponseActorextendsActorwithStashwithDelaywithZMQwithLog"></a>
+      <a id="NoResponseActorextendsActorwithDelaywithZMQwithLog"></a>
       <a id="NoResponseActor:NoResponseActor"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -115,7 +115,7 @@ configuration standard
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="NoResponseActor.html"><span class="name">NoResponseActor</span></a><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span> with <span class="extype" name="akka.actor.Stash">Stash</span> with <a href="traits/Delay.html" class="extype" name="naogateway.traits.Delay">Delay</a> with <a href="traits/ZMQ.html" class="extype" name="naogateway.traits.ZMQ">ZMQ</a> with <a href="traits/Log.html" class="extype" name="naogateway.traits.Log">Log</a></span>
+        <a href="NoResponseActor.html"><span class="name">NoResponseActor</span></a><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span> with <a href="traits/Delay.html" class="extype" name="naogateway.traits.Delay">Delay</a> with <a href="traits/ZMQ.html" class="extype" name="naogateway.traits.ZMQ">ZMQ</a> with <a href="traits/Log.html" class="extype" name="naogateway.traits.Log">Log</a></span>
       </span>
       </h4>
       <p class="comment cmt">NaoResponseActor send calls to nao

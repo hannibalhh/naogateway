@@ -87,7 +87,7 @@
         <div id="types" class="types members">
               <h3>Type Members</h3>
               <ol><li name="naogateway.value.NaoMessages.Answer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="AnswerextendsNaoMessages.DataMessagewithNaoMessages.InMessagewithNaoMessages.AnsweringwithProductwithSerializable"></a>
+      <a id="AnswerextendsNaoMessages.AnsweringwithProductwithSerializable"></a>
       <a id="Answer:Answer"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -95,23 +95,11 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a href="NaoMessages$$Answer.html"><span class="name">Answer</span></a><span class="params">(<span name="call">call: <a href="NaoMessages$$Call.html" class="extype" name="naogateway.value.NaoMessages.Call">Call</a></span>, <span name="value">value: <span class="extype" name="naogateway.value.Hawactormsg.MixedValue">MixedValue</span></span>)</span><span class="result"> extends <a href="NaoMessages$$DataMessage.html" class="extype" name="naogateway.value.NaoMessages.DataMessage">DataMessage</a> with <a href="NaoMessages$$InMessage.html" class="extype" name="naogateway.value.NaoMessages.InMessage">InMessage</a> with <a href="NaoMessages$$Answering.html" class="extype" name="naogateway.value.NaoMessages.Answering">Answering</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a href="NaoMessages$$Answer.html"><span class="name">Answer</span></a><span class="params">(<span name="call">call: <a href="NaoMessages$$Call.html" class="extype" name="naogateway.value.NaoMessages.Call">Call</a></span>, <span name="value">value: <span class="extype" name="naogateway.value.Hawactormsg.MixedValue">MixedValue</span></span>)</span><span class="result"> extends <a href="NaoMessages$$Answering.html" class="extype" name="naogateway.value.NaoMessages.Answering">Answering</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
-      
-    </li><li name="naogateway.value.NaoMessages.AnswerTimedOut" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="AnswerTimedOutextendsNaoMessages.InMessagewithNaoMessages.ErrorMessagewithNaoMessages.AnsweringwithProductwithSerializable"></a>
-      <a id="AnswerTimedOut:AnswerTimedOut"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">case class</span>
-      </span>
-      <span class="symbol">
-        <a href="NaoMessages$$AnswerTimedOut.html"><span class="name">AnswerTimedOut</span></a><span class="params">(<span name="call">call: <a href="NaoMessages$$Call.html" class="extype" name="naogateway.value.NaoMessages.Call">Call</a></span>)</span><span class="result"> extends <a href="NaoMessages$$InMessage.html" class="extype" name="naogateway.value.NaoMessages.InMessage">InMessage</a> with <a href="NaoMessages$$ErrorMessage.html" class="extype" name="naogateway.value.NaoMessages.ErrorMessage">ErrorMessage</a> with <a href="NaoMessages$$Answering.html" class="extype" name="naogateway.value.NaoMessages.Answering">Answering</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
-      </span>
-      </h4>
-      
+      <p class="comment cmt">Answer contains a MixedValue and the call to identify it
+</p>
     </li><li name="naogateway.value.NaoMessages.Answering" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AnsweringextendsAnyRef"></a>
       <a id="Answering:Answering"></a>
@@ -124,9 +112,11 @@
         <a href="NaoMessages$$Answering.html"><span class="name">Answering</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       </h4>
-      
+      <p class="comment cmt">If a ResponseActor or NoResponseActor answer a call, it comes a instance of type Answering
+Answering is a trait for Answer and InvalidAnswer
+</p>
     </li><li name="naogateway.value.NaoMessages.Call" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="CallextendsNaoMessages.DataMessagewithNaoMessages.CallingwithNaoMessages.OutMessagewithProductwithSerializable"></a>
+      <a id="CallextendsProductwithSerializable"></a>
       <a id="Call:Call"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -134,62 +124,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a href="NaoMessages$$Call.html"><span class="name">Call</span></a><span class="params">(<span name="module">module: <a href="NaoMessages$$Module.html" class="extype" name="naogateway.value.NaoMessages.Module">Module</a></span>, <span name="method">method: <a href="NaoMessages$$Method.html" class="extype" name="naogateway.value.NaoMessages.Method">Method</a></span>, <span name="parameters">parameters: <span class="extype" name="scala.List">List</span>[<span class="extype" name="naogateway.value.Hawactormsg.MixedValue">MixedValue</span>] = <span class="symbol">immutable.this.Nil</span></span>)</span><span class="result"> extends <a href="NaoMessages$$DataMessage.html" class="extype" name="naogateway.value.NaoMessages.DataMessage">DataMessage</a> with <a href="NaoMessages$$Calling.html" class="extype" name="naogateway.value.NaoMessages.Calling">Calling</a> with <a href="NaoMessages$$OutMessage.html" class="extype" name="naogateway.value.NaoMessages.OutMessage">OutMessage</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a href="NaoMessages$$Call.html"><span class="name">Call</span></a><span class="params">(<span name="module">module: <span class="extype" name="scala.Symbol">Symbol</span></span>, <span name="method">method: <span class="extype" name="scala.Symbol">Symbol</span></span>, <span name="parameters">parameters: <span class="extype" name="scala.List">List</span>[<span class="extype" name="naogateway.value.Hawactormsg.MixedValue">MixedValue</span>] = <span class="symbol">immutable.this.Nil</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
-      
-    </li><li name="naogateway.value.NaoMessages.Calling" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="CallingextendsAnyRef"></a>
-      <a id="Calling:Calling"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
-      </span>
-      <span class="symbol">
-        <a href="NaoMessages$$Calling.html"><span class="name">Calling</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="naogateway.value.NaoMessages.DataMessage" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="DataMessageextendsAnyRef"></a>
-      <a id="DataMessage:DataMessage"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
-      </span>
-      <span class="symbol">
-        <a href="NaoMessages$$DataMessage.html"><span class="name">DataMessage</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="naogateway.value.NaoMessages.ErrorMessage" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="ErrorMessageextendsNaoMessages.Message"></a>
-      <a id="ErrorMessage:ErrorMessage"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
-      </span>
-      <span class="symbol">
-        <a href="NaoMessages$$ErrorMessage.html"><span class="name">ErrorMessage</span></a><span class="result"> extends <a href="NaoMessages$$Message.html" class="extype" name="naogateway.value.NaoMessages.Message">Message</a></span>
-      </span>
-      </h4>
-      
-    </li><li name="naogateway.value.NaoMessages.Event" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="EventextendsNaoMessages.DataMessagewithNaoMessages.InMessage"></a>
-      <a id="Event:Event"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
-      </span>
-      <span class="symbol">
-        <a href="NaoMessages$$Event.html"><span class="name">Event</span></a><span class="result"> extends <a href="NaoMessages$$DataMessage.html" class="extype" name="naogateway.value.NaoMessages.DataMessage">DataMessage</a> with <a href="NaoMessages$$InMessage.html" class="extype" name="naogateway.value.NaoMessages.InMessage">InMessage</a></span>
-      </span>
-      </h4>
-      
+      <p class="comment cmt">For ResponseActor and NoResponseActor could be send a call
+to communicate with Nao
+module, method and params like Naoqi API
+Please note implicit conversion (import NaoMessages.</p>
     </li><li name="naogateway.value.NaoMessages.HeartBeatState" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="HeartBeatStateextendsAnyRef"></a>
       <a id="HeartBeatState:HeartBeatState"></a>
@@ -202,35 +143,12 @@
         <a href="NaoMessages$$HeartBeatState.html"><span class="name">HeartBeatState</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       </h4>
-      
-    </li><li name="naogateway.value.NaoMessages.InMessage" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="InMessageextendsAnyRef"></a>
-      <a id="InMessage:InMessage"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
-      </span>
-      <span class="symbol">
-        <a href="NaoMessages$$InMessage.html"><span class="name">InMessage</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="naogateway.value.NaoMessages.InfoMessage" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="InfoMessageextendsNaoMessages.Message"></a>
-      <a id="InfoMessage:InfoMessage"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
-      </span>
-      <span class="symbol">
-        <a href="NaoMessages$$InfoMessage.html"><span class="name">InfoMessage</span></a><span class="result"> extends <a href="NaoMessages$$Message.html" class="extype" name="naogateway.value.NaoMessages.Message">Message</a></span>
-      </span>
-      </h4>
-      
+      <p class="comment cmt">HeartBeatActor have different states
+NaoActor get state information with methods of type HeartBeatState
+like online or offline
+</p>
     </li><li name="naogateway.value.NaoMessages.InvalidAnswer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="InvalidAnswerextendsNaoMessages.InMessagewithNaoMessages.ErrorMessagewithNaoMessages.AnsweringwithProductwithSerializable"></a>
+      <a id="InvalidAnswerextendsNaoMessages.AnsweringwithProductwithSerializable"></a>
       <a id="InvalidAnswer:InvalidAnswer"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -238,75 +156,26 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a href="NaoMessages$$InvalidAnswer.html"><span class="name">InvalidAnswer</span></a><span class="params">(<span name="call">call: <a href="NaoMessages$$Call.html" class="extype" name="naogateway.value.NaoMessages.Call">Call</a></span>)</span><span class="result"> extends <a href="NaoMessages$$InMessage.html" class="extype" name="naogateway.value.NaoMessages.InMessage">InMessage</a> with <a href="NaoMessages$$ErrorMessage.html" class="extype" name="naogateway.value.NaoMessages.ErrorMessage">ErrorMessage</a> with <a href="NaoMessages$$Answering.html" class="extype" name="naogateway.value.NaoMessages.Answering">Answering</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a href="NaoMessages$$InvalidAnswer.html"><span class="name">InvalidAnswer</span></a><span class="params">(<span name="call">call: <a href="NaoMessages$$Call.html" class="extype" name="naogateway.value.NaoMessages.Call">Call</a></span>)</span><span class="result"> extends <a href="NaoMessages$$Answering.html" class="extype" name="naogateway.value.NaoMessages.Answering">Answering</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
-      
-    </li><li name="naogateway.value.NaoMessages.InvalidCall" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="InvalidCallextendsNaoMessages.OutMessagewithNaoMessages.CallingwithNaoMessages.ErrorMessagewithProductwithSerializable"></a>
-      <a id="InvalidCall:InvalidCall"></a>
+      <p class="comment cmt">Call on wrong messages, so it comes a
+invalid answer with call to identify
+</p>
+    </li><li name="naogateway.value.NaoMessages.Nao" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NaoextendsProductwithSerializable"></a>
+      <a id="Nao:Nao"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a href="NaoMessages$$InvalidCall.html"><span class="name">InvalidCall</span></a><span class="params">(<span name="call">call: <a href="NaoMessages$$Call.html" class="extype" name="naogateway.value.NaoMessages.Call">Call</a></span>)</span><span class="result"> extends <a href="NaoMessages$$OutMessage.html" class="extype" name="naogateway.value.NaoMessages.OutMessage">OutMessage</a> with <a href="NaoMessages$$Calling.html" class="extype" name="naogateway.value.NaoMessages.Calling">Calling</a> with <a href="NaoMessages$$ErrorMessage.html" class="extype" name="naogateway.value.NaoMessages.ErrorMessage">ErrorMessage</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a href="NaoMessages$$Nao.html"><span class="name">Nao</span></a><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="host">host: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="port">port: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
-      
-    </li><li name="naogateway.value.NaoMessages.Message" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="MessageextendsAnyRef"></a>
-      <a id="Message:Message"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
-      </span>
-      <span class="symbol">
-        <a href="NaoMessages$$Message.html"><span class="name">Message</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="naogateway.value.NaoMessages.Method" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="MethodextendsProductwithSerializable"></a>
-      <a id="Method:Method"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">case class</span>
-      </span>
-      <span class="symbol">
-        <a href="NaoMessages$$Method.html"><span class="name">Method</span></a><span class="params">(<span name="title">title: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="naogateway.value.NaoMessages.Module" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="ModuleextendsProductwithSerializable"></a>
-      <a id="Module:Module"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">case class</span>
-      </span>
-      <span class="symbol">
-        <a href="NaoMessages$$Module.html"><span class="name">Module</span></a><span class="params">(<span name="title">title: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="naogateway.value.NaoMessages.OutMessage" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="OutMessageextendsAnyRef"></a>
-      <a id="OutMessage:OutMessage"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
-      </span>
-      <span class="symbol">
-        <a href="NaoMessages$$OutMessage.html"><span class="name">OutMessage</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
-      </span>
-      </h4>
-      
+      <p class="comment cmt">Connecting information of nao with name, host and port
+</p>
     </li></ol>
             </div>
 
@@ -391,7 +260,9 @@
         <a href="NaoMessages$$Connect$.html"><span class="name">Connect</span></a><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
-      
+      <p class="comment cmt">Connect is a message to get ActorRef if response,noresponse,visionactor
+from NaoActor
+</p>
     </li><li name="naogateway.value.NaoMessages.Conversions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Conversions"></a>
       <a id="Conversions:Conversions"></a>
@@ -404,7 +275,8 @@
         <a href="NaoMessages$$Conversions$.html"><span class="name">Conversions</span></a>
       </span>
       </h4>
-      
+      <p class="comment cmt">Conversions for MixedValue
+please import it (import NaoMessages.</p>
     </li><li name="naogateway.value.NaoMessages#HAWActorRPCResponseTOByteArray" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="HAWActorRPCResponseTOByteArray(r:Array[Byte]):naogateway.value.Hawactormsg.HAWActorRPCResponse"></a>
       <a id="HAWActorRPCResponseTOByteArray(Array[Byte]):HAWActorRPCResponse"></a>
@@ -417,7 +289,8 @@
         <span class="name">HAWActorRPCResponseTOByteArray</span><span class="params">(<span name="r">r: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Byte">Byte</span>]</span>)</span><span class="result">: <span class="extype" name="naogateway.value.Hawactormsg.HAWActorRPCResponse">HAWActorRPCResponse</span></span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">implicit conversion of protobufmessage HAWActorRPCResponse to bytearray
+</p>
     </li><li name="naogateway.value.NaoMessages.MaybeOffline" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="MaybeOffline"></a>
       <a id="MaybeOffline:MaybeOffline"></a>
@@ -469,20 +342,22 @@
         <a href="NaoMessages$$Trigger$.html"><span class="name">Trigger</span></a><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
-      
+      <p class="comment cmt">Trigger is a message to realize a timer
+</p>
     </li><li name="naogateway.value.NaoMessages#answer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="answer(protoResponse:naogateway.value.Hawactormsg.HAWActorRPCResponse,c:naogateway.value.NaoMessages.Call):ProductwithSerializablewithnaogateway.value.NaoMessages.InMessagewithnaogateway.value.NaoMessages.Answering"></a>
-      <a id="answer(HAWActorRPCResponse,Call):ProductwithSerializablewithInMessagewithAnswering"></a>
+      <a id="answer(protoResponse:naogateway.value.Hawactormsg.HAWActorRPCResponse,c:naogateway.value.NaoMessages.Call):ProductwithSerializablewithnaogateway.value.NaoMessages.Answering"></a>
+      <a id="answer(HAWActorRPCResponse,Call):ProductwithSerializablewithAnswering"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">answer</span><span class="params">(<span name="protoResponse">protoResponse: <span class="extype" name="naogateway.value.Hawactormsg.HAWActorRPCResponse">HAWActorRPCResponse</span></span>, <span name="c">c: <a href="NaoMessages$$Call.html" class="extype" name="naogateway.value.NaoMessages.Call">Call</a></span>)</span><span class="result">: <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span> with <a href="NaoMessages$$InMessage.html" class="extype" name="naogateway.value.NaoMessages.InMessage">InMessage</a> with <a href="NaoMessages$$Answering.html" class="extype" name="naogateway.value.NaoMessages.Answering">Answering</a></span>
+        <span class="name">answer</span><span class="params">(<span name="protoResponse">protoResponse: <span class="extype" name="naogateway.value.Hawactormsg.HAWActorRPCResponse">HAWActorRPCResponse</span></span>, <span name="c">c: <a href="NaoMessages$$Call.html" class="extype" name="naogateway.value.NaoMessages.Call">Call</a></span>)</span><span class="result">: <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span> with <a href="NaoMessages$$Answering.html" class="extype" name="naogateway.value.NaoMessages.Answering">Answering</a></span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">Generate a Answer of HAWActorRPCResponse and Call
+</p>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -524,7 +399,8 @@
         <span class="name">empty</span><span class="result">: <span class="extype" name="naogateway.value.Hawactormsg.HAWActorRPCResponse">HAWActorRPCResponse</span></span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">standard empty value of HAWActorRPCResponse
+</p>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -683,7 +559,8 @@
         <span class="name">toString</span><span class="params">(<span name="mixed">mixed: <span class="extype" name="naogateway.value.Hawactormsg.MixedValue">MixedValue</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">toString for MixedValue from David converted to scala
+</p>
     </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>

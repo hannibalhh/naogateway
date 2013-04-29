@@ -203,12 +203,13 @@ der einzelnen Aktoren konfiguriert werden.
 		  }  
 		}
 		responseactor.delay {
-			altexttospeech.say = 5
-			altexttospeech.getvolume = 4
+			almotion.getcom = 200
 		}
 		heartbeatactor {
 			online.delay = 1000
 			maybeoffline.delay = 300
+			offlinetimes = 3
+			activated = false
 		}
 	}
 	

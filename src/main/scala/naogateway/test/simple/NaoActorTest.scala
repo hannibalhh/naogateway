@@ -22,7 +22,7 @@ object NaoActorTest extends App {
   
   system.actorOf(Props[ResponseTestActor])	
     
-  class ResponseTestActor extends TestActor {
+  class ResponseTestActor extends TestActor { 
     override def preStart = naoActor ! Connect
  
     def receive = {
@@ -31,7 +31,7 @@ object NaoActorTest extends App {
         trace(noResponse)
         trace(vision)
         response ! Call('ALTextToSpeech, 'getVolume)
-//        noResponse ! Call('ALTextToSpeech, 'say, List("Stehen bleiben"))
+        noResponse ! Call('ALTextToSpeech, 'say, List("Stehen bleiben"))
       }    
       case x => trace(x)
     }

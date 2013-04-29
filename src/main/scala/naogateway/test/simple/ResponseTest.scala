@@ -7,8 +7,8 @@ import naogateway.value.NaoMessages._
 import naogateway.value.NaoMessages.Conversions._
 import naogateway.ResponseActor
 import akka.actor.ActorSystem
-import naogateway.value.Nao
-
+import com.typesafe.config.ConfigFactory
+ 
 /**
  * A local runnable test of ResponseActor
  * starts one of some test actors   
@@ -17,13 +17,14 @@ import naogateway.value.Nao
  */
 object ResponseTest extends App {
 
-  val system = ActorSystem("scaleNao")
+  val config = ConfigFactory.load()
+  val system = ActorSystem("test",config.getConfig("naogateway"))
 
-  val responseActor = system.actorOf(Props[ResponseActor])
-  responseActor ! Nao("Nila", "192.168.1.10", 5555)
+  val nao = Nao("Nila", "192.168.1.10", 5555)
+  val responseActor = system.actorOf(Props(new ResponseActor(nao)))
   system.actorOf(Props[ResponseTestActor])
-//  system.actorOf(Props[ResponseActorTestSayOne])
-//  system.actorOf(Props[ResponseActorTestSayTwo])
+  system.actorOf(Props[ResponseActorTestSayOne])
+  system.actorOf(Props[ResponseActorTestSayTwo])
 //  system.actorOf(Props[ResponseActorTestSayOne])
 //  system.actorOf(Props[ResponseActorTestSayTwo])
 

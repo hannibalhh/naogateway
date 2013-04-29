@@ -3,36 +3,25 @@ import akka.actor.Actor
 import akka.actor.ActorRef
 import naogateway.traits.ZMQ
 import naogateway.traits.Log
+import naogateway.value.NaoMessages.Nao
 
 /**
  * VisionActor communicates with HAWCamActor on nao with ZMQ
  */
-class VisionActor extends Actor with Log with ZMQ{
+class VisionActor(nao:Nao) extends Actor with Log with ZMQ{
 
-  import naogateway.value._
+  import naogateway.value.NaoMessages.Nao
   import naogateway.value.NaoVisionMessages._
   import context._
 
   /**
-   * In the start state actor wait for connection data (Nao object)
-   * with name, ip and port from NaoActor
-   */
-  def receive = {
-    case nao: Nao => {
-      trace(nao + " comes in")
-      become(communicating(nao))
-    }
-    case x => wrongMessage(x, "receive")
-  }
-
-  /**
-   * In communicating state the actor takes every call and
+   * In start state the actor takes every call and
    * convert to nao proto
    * send it to nao
    * wait non blocking on anwser
    */
   import org.zeromq.ZMQ.Socket
-  def communicating(nao: Nao): Receive = {
+  def receive = {
     case c: VisionCall => {
       trace("request: " + c)
       val socket = zmqsocket(nao.host,nao.port)

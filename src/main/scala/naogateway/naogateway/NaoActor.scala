@@ -26,19 +26,18 @@ import akka.actor.Actor
 		  		context.system.settings.config.getString("nao.host"),
 		  		context.system.settings.config.getInt("nao.camport"))
   
-
   /**
-   * Because of no finished HeartBeatActor implementation at this time
-   * NaoActor sends the positive HeartBat Online message
-   */		  
-  override def preStart = self ! Online
-
-//  /**
-//   * HeartBeat actor checks the connection state
-//   * HeartBeat need the connecting information for starting
-//   */	  
-//  val heartbeat = context.actorOf(Props[HeartBeatActor],"HeartBeat")
-//  override def preStart = heartbeat ! nao
+   * HeartBeat actor checks the connection state
+   * HeartBeat need the connecting information for starting
+   */	
+  override def preStart = {
+    // if heartbeat activated
+    if (context.system.settings.config.getBoolean("heartbeatactor.activated"))
+    	context.actorOf(Props(new HeartBeatActor(nao)),"HeartBeat")
+    // alibi message that nao is offline
+    else
+      self ! Online
+  }
 		  		
   /**
    * In the start state actor wait for HeartBeat
@@ -48,17 +47,13 @@ import akka.actor.Actor
   def receive = {
     case Online => {
       trace(nao + " is online")
-      val response = context.actorOf(Props[ResponseActor],"response")
-      val noResponse = context.actorOf(Props[NoResponseActor].withDispatcher("akka.actor.default-stash-dispatcher"),"noresponse")
-      val vision = context.actorOf(Props[VisionActor],"vision")     
-      response ! nao
-      noResponse ! nao
-      vision ! naoVision
+      val response = context.actorOf(Props(new ResponseActor(nao)),"response")
+      val noResponse = context.actorOf(Props(new NoResponseActor(nao)),"noresponse")
+      val vision = context.actorOf(Props(new VisionActor(nao)),"vision")     
       unstashAll
       become(communicating(response,noResponse,vision))
     }
     case Offline => throw new RuntimeException("nao is not available")
-    case MaybeOffline =>
     case Connect => stash
     case x => wrongMessage(x, "receive")
   }
@@ -72,7 +67,7 @@ import akka.actor.Actor
       sender ! (response,noResponse,vision)
     }
     case Offline => throw new RuntimeException("nao is not available")
-    case Online | MaybeOffline =>
+    case Online =>
     case x => wrongMessage(x, "communicating")
   }
   

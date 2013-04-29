@@ -4,8 +4,9 @@ import akka.actor.ActorSystem
 import naogateway.Gateway
 import akka.actor.Props
 import naogateway.HeartBeatActor
-import naogateway.value.Nao
-
+import naogateway.value.NaoMessages.Nao
+import naogateway.value.NaoMessages.Trigger
+import com.typesafe.config.ConfigFactory
 /**
  * A local runnable test of HeartBeatActor
  * starts a gateway
@@ -14,12 +15,15 @@ import naogateway.value.Nao
  */
 object HeartBeatTest extends App{
 
-  val gateway = Gateway("localnila")
-  val heart = gateway.system.actorOf(Props[HeartBeatActor])	
+  val config = ConfigFactory.load()
+  val system = ActorSystem("test",config.getConfig("naogateway"))
+
+  val nao = Nao("Nila", "127.0.0.1", 5555)
   
-  val nao = Nao(gateway.system.settings.config.getString("nao.name"),
-		  		gateway.system.settings.config.getString("nao.host"),
-		  		gateway.system.settings.config.getInt("nao.port"))
-  heart ! nao
+  val heart = system.actorOf(Props(new HeartBeatActor(nao)),"heartbeat")
+  
+  heart ! Trigger
+
+ 
 		  		
 }

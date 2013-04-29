@@ -4,10 +4,6 @@ version := "1.0"
 
 scalaVersion := "2.10.1"
 
-mainClass := Some("naogateway.NaogatewayApp")
-
-selectMainClass := Some("naogateway.NaogatewayApp")
-
 mainClass in (Compile, run) := Some("naogateway.NaogatewayApp")
 
 libraryDependencies += "com.typesafe.akka" % "akka-actor_2.10" % "2.1.2"

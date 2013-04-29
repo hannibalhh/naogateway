@@ -40,13 +40,17 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Call</span><span class="params">(<span name="module">module: <a href="NaoMessages$$Module.html" class="extype" name="naogateway.value.NaoMessages.Module">Module</a></span>, <span name="method">method: <a href="NaoMessages$$Method.html" class="extype" name="naogateway.value.NaoMessages.Method">Method</a></span>, <span name="parameters">parameters: <span class="extype" name="scala.List">List</span>[<span class="extype" name="naogateway.value.Hawactormsg.MixedValue">MixedValue</span>] = <span class="symbol">immutable.this.Nil</span></span>)</span><span class="result"> extends <a href="NaoMessages$$DataMessage.html" class="extype" name="naogateway.value.NaoMessages.DataMessage">DataMessage</a> with <a href="NaoMessages$$Calling.html" class="extype" name="naogateway.value.NaoMessages.Calling">Calling</a> with <a href="NaoMessages$$OutMessage.html" class="extype" name="naogateway.value.NaoMessages.OutMessage">OutMessage</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Call</span><span class="params">(<span name="module">module: <span class="extype" name="scala.Symbol">Symbol</span></span>, <span name="method">method: <span class="extype" name="scala.Symbol">Symbol</span></span>, <span name="parameters">parameters: <span class="extype" name="scala.List">List</span>[<span class="extype" name="naogateway.value.Hawactormsg.MixedValue">MixedValue</span>] = <span class="symbol">immutable.this.Nil</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>For ResponseActor and NoResponseActor could be send a call
+to communicate with Nao
+module, method and params like Naoqi API
+Please note implicit conversion (import NaoMessages.Conversions._)
+</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="NaoMessages$$OutMessage.html" class="extype" name="naogateway.value.NaoMessages.OutMessage">OutMessage</a>, <a href="NaoMessages$$Calling.html" class="extype" name="naogateway.value.NaoMessages.Calling">Calling</a>, <a href="NaoMessages$$DataMessage.html" class="extype" name="naogateway.value.NaoMessages.DataMessage">DataMessage</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -64,7 +68,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="naogateway.value.NaoMessages.Call"><span>Call</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="naogateway.value.NaoMessages.OutMessage"><span>OutMessage</span></li><li class="in" name="naogateway.value.NaoMessages.Calling"><span>Calling</span></li><li class="in" name="naogateway.value.NaoMessages.DataMessage"><span>DataMessage</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="naogateway.value.NaoMessages.Call"><span>Call</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -85,7 +89,7 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="naogateway.value.NaoMessages.Call#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(module:naogateway.value.NaoMessages.Module,method:naogateway.value.NaoMessages.Method,parameters:List[naogateway.value.Hawactormsg.MixedValue]):naogateway.value.NaoMessages.Call"></a>
+      <a id="&lt;init&gt;(module:Symbol,method:Symbol,parameters:List[naogateway.value.Hawactormsg.MixedValue]):naogateway.value.NaoMessages.Call"></a>
       <a id="&lt;init&gt;:Call"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -93,7 +97,7 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Call</span><span class="params">(<span name="module">module: <a href="NaoMessages$$Module.html" class="extype" name="naogateway.value.NaoMessages.Module">Module</a></span>, <span name="method">method: <a href="NaoMessages$$Method.html" class="extype" name="naogateway.value.NaoMessages.Method">Method</a></span>, <span name="parameters">parameters: <span class="extype" name="scala.List">List</span>[<span class="extype" name="naogateway.value.Hawactormsg.MixedValue">MixedValue</span>] = <span class="symbol">immutable.this.Nil</span></span>)</span>
+        <span class="name">Call</span><span class="params">(<span name="module">module: <span class="extype" name="scala.Symbol">Symbol</span></span>, <span name="method">method: <span class="extype" name="scala.Symbol">Symbol</span></span>, <span name="parameters">parameters: <span class="extype" name="scala.List">List</span>[<span class="extype" name="naogateway.value.Hawactormsg.MixedValue">MixedValue</span>] = <span class="symbol">immutable.this.Nil</span></span>)</span>
       </span>
       </h4>
       
@@ -171,19 +175,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="naogateway.value.NaoMessages.Call#actorName" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="actorName:String"></a>
-      <a id="actorName:String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">actorName</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
-      </span>
-      </h4>
-      
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -255,19 +246,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="naogateway.value.NaoMessages.Calling#isDefined" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="isDefined:Boolean"></a>
-      <a id="isDefined:Boolean"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">isDefined</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="NaoMessages$$Calling.html" class="extype" name="naogateway.value.NaoMessages.Calling">Calling</a></dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -282,28 +260,28 @@
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li name="naogateway.value.NaoMessages.Call#method" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="method:naogateway.value.NaoMessages.Method"></a>
-      <a id="method:Method"></a>
+      <a id="method:Symbol"></a>
+      <a id="method:Symbol"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">method</span><span class="result">: <a href="NaoMessages$$Method.html" class="extype" name="naogateway.value.NaoMessages.Method">Method</a></span>
+        <span class="name">method</span><span class="result">: <span class="extype" name="scala.Symbol">Symbol</span></span>
       </span>
       </h4>
       
     </li><li name="naogateway.value.NaoMessages.Call#module" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="module:naogateway.value.NaoMessages.Module"></a>
-      <a id="module:Module"></a>
+      <a id="module:Symbol"></a>
+      <a id="module:Symbol"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">module</span><span class="result">: <a href="NaoMessages$$Module.html" class="extype" name="naogateway.value.NaoMessages.Module">Module</a></span>
+        <span class="name">module</span><span class="result">: <span class="extype" name="scala.Symbol">Symbol</span></span>
       </span>
       </h4>
       
@@ -371,7 +349,8 @@
         <span class="name">stringParameters</span><span class="result">: <span class="extype" name="scala.collection.immutable.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">generate string of parameters
+</p>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -463,12 +442,6 @@
               <h3>Inherited from <span class="extype" name="scala.Product">Product</span></h3>
             </div><div class="parent" name="scala.Equals">
               <h3>Inherited from <span class="extype" name="scala.Equals">Equals</span></h3>
-            </div><div class="parent" name="naogateway.value.NaoMessages.OutMessage">
-              <h3>Inherited from <a href="NaoMessages$$OutMessage.html" class="extype" name="naogateway.value.NaoMessages.OutMessage">OutMessage</a></h3>
-            </div><div class="parent" name="naogateway.value.NaoMessages.Calling">
-              <h3>Inherited from <a href="NaoMessages$$Calling.html" class="extype" name="naogateway.value.NaoMessages.Calling">Calling</a></h3>
-            </div><div class="parent" name="naogateway.value.NaoMessages.DataMessage">
-              <h3>Inherited from <a href="NaoMessages$$DataMessage.html" class="extype" name="naogateway.value.NaoMessages.DataMessage">DataMessage</a></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">

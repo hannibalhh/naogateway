@@ -111,7 +111,9 @@
         <a href="NaoVisionMessages$$RawVisionCall.html"><span class="name">RawVisionCall</span></a><span class="params">(<span name="resolution">resolution: <a href="NaoVisionMessages$$Resolutions$.html#ValueextendsOrdered[Enumeration.this.Value]withSerializable" class="extmbr" name="naogateway.value.NaoVisionMessages.Resolutions.Value">Resolutions.Value</a></span>, <span name="colorSpaces">colorSpaces: <a href="NaoVisionMessages$$ColorSpaces$.html#ValueextendsOrdered[Enumeration.this.Value]withSerializable" class="extmbr" name="naogateway.value.NaoVisionMessages.ColorSpaces.Value">ColorSpaces.Value</a></span>, <span name="fps">fps: <a href="NaoVisionMessages$$Frames$.html#ValueextendsOrdered[Enumeration.this.Value]withSerializable" class="extmbr" name="naogateway.value.NaoVisionMessages.Frames.Value">Frames.Value</a></span>)</span><span class="result"> extends <a href="NaoVisionMessages$$VisionCalling.html" class="extype" name="naogateway.value.NaoVisionMessages.VisionCalling">VisionCalling</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
-      
+      <p class="comment cmt">RawVisionCall requests a Picture (which contains a pure protobuf bytearray)
+Thats for more speed, it have to be tested
+</p>
     </li><li name="naogateway.value.NaoVisionMessages.VisionCall" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="VisionCallextendsNaoVisionMessages.VisionCallingwithProductwithSerializable"></a>
       <a id="VisionCall:VisionCall"></a>
@@ -124,7 +126,8 @@
         <a href="NaoVisionMessages$$VisionCall.html"><span class="name">VisionCall</span></a><span class="params">(<span name="resolution">resolution: <a href="NaoVisionMessages$$Resolutions$.html#ValueextendsOrdered[Enumeration.this.Value]withSerializable" class="extmbr" name="naogateway.value.NaoVisionMessages.Resolutions.Value">Resolutions.Value</a></span>, <span name="colorSpaces">colorSpaces: <a href="NaoVisionMessages$$ColorSpaces$.html#ValueextendsOrdered[Enumeration.this.Value]withSerializable" class="extmbr" name="naogateway.value.NaoVisionMessages.ColorSpaces.Value">ColorSpaces.Value</a></span>, <span name="fps">fps: <a href="NaoVisionMessages$$Frames$.html#ValueextendsOrdered[Enumeration.this.Value]withSerializable" class="extmbr" name="naogateway.value.NaoVisionMessages.Frames.Value">Frames.Value</a></span>)</span><span class="result"> extends <a href="NaoVisionMessages$$VisionCalling.html" class="extype" name="naogateway.value.NaoVisionMessages.VisionCalling">VisionCalling</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
-      
+      <p class="comment cmt">VisionCall requests a CamResponse (which contains a picture as a bytearray)
+</p>
     </li><li name="naogateway.value.NaoVisionMessages.VisionCalling" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="VisionCallingextendsAnyRef"></a>
       <a id="VisionCalling:VisionCalling"></a>
@@ -137,7 +140,9 @@
         <a href="NaoVisionMessages$$VisionCalling.html"><span class="name">VisionCalling</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       </h4>
-      
+      <p class="comment cmt">VisionCalling is trait for VisionCall and RawVisionCall
+with resolution,colorspace and fps
+</p>
     </li></ol>
             </div>
 
@@ -222,7 +227,8 @@
         <span class="name">CamResponseTOByteArray</span><span class="params">(<span name="r">r: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Byte">Byte</span>]</span>)</span><span class="result">: <span class="extype" name="naogateway.value.HawCam.CamResponse">CamResponse</span></span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">Implicit convert of a CamResponse to  bytearray
+</p>
     </li><li name="naogateway.value.NaoVisionMessages.ColorSpaces" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="ColorSpaces"></a>
       <a id="ColorSpaces:ColorSpaces"></a>
@@ -235,7 +241,9 @@
         <a href="NaoVisionMessages$$ColorSpaces$.html"><span class="name">ColorSpaces</span></a><span class="result"> extends <span class="extype" name="scala.Enumeration">Enumeration</span></span>
       </span>
       </h4>
-      
+      <p class="comment cmt">to define color space of nao camera
+ColorSpaces contains id you need
+like ColorSpaces.</p>
     </li><li name="naogateway.value.NaoVisionMessages.Frames" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Frames"></a>
       <a id="Frames:Frames"></a>
@@ -248,7 +256,9 @@
         <a href="NaoVisionMessages$$Frames$.html"><span class="name">Frames</span></a><span class="result"> extends <span class="extype" name="scala.Enumeration">Enumeration</span></span>
       </span>
       </h4>
-      
+      <p class="comment cmt">to define frames per second of nao camera
+Frames contains id you need
+like Frames.</p>
     </li><li name="naogateway.value.NaoVisionMessages.Resolutions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Resolutions"></a>
       <a id="Resolutions:Resolutions"></a>
@@ -261,7 +271,9 @@
         <a href="NaoVisionMessages$$Resolutions$.html"><span class="name">Resolutions</span></a><span class="result"> extends <span class="extype" name="scala.Enumeration">Enumeration</span></span>
       </span>
       </h4>
-      
+      <p class="comment cmt">to define resolution of nao camera
+Resolutions contains id you need
+like Resolutions.</p>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -423,7 +435,8 @@
         <span class="name">picture</span><span class="params">(<span name="p">p: <span class="extype" name="naogateway.value.HawCam.CamResponse">CamResponse</span></span>)</span><span class="result">: <a href="NaoVisionMessages$$Picture.html" class="extype" name="naogateway.value.NaoVisionMessages.Picture">Picture</a></span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">make a Picture from CamResponse
+</p>
     </li><li name="naogateway.value.NaoVisionMessages#request" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="request(c:naogateway.value.NaoVisionMessages.VisionCalling):naogateway.value.HawCam.CamRequest"></a>
       <a id="request(VisionCalling):CamRequest"></a>
@@ -436,7 +449,8 @@
         <span class="name">request</span><span class="params">(<span name="c">c: <a href="NaoVisionMessages$$VisionCalling.html" class="extype" name="naogateway.value.NaoVisionMessages.VisionCalling">VisionCalling</a></span>)</span><span class="result">: <span class="extype" name="naogateway.value.HawCam.CamRequest">CamRequest</span></span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">Build a CamRequest from VisionCalling
+</p>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

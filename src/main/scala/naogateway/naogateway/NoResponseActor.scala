@@ -6,29 +6,17 @@ import akka.actor.Stash
 import naogateway.traits.Delay
 import naogateway.traits.ZMQ
 import naogateway.traits.Log
+import naogateway.value.NaoMessages.Nao
 
 /**
  * NaoResponseActor send calls to nao 
  * without care of answering
  */
-class NoResponseActor extends Actor with Stash with Delay with ZMQ with Log{
+class NoResponseActor(nao:Nao) extends Actor with Delay with ZMQ with Log{
 
-  import naogateway.value._
   import naogateway.value.NaoMessages._
   import naogateway.value.NaoMessages.Conversions
   import context._
-
-  /**
-   * In the start state actor wait for connection data (Nao object)
-   * with name, ip and port from NaoActor
-   */
-  def receive = {
-    case nao: Nao => {
-      trace(nao + " comes in")
-      become(communicating(nao))
-    }
-    case x => wrongMessage(x, "receive")
-  }
 
   /**
    * In communicating state the actor takes every call and
@@ -39,7 +27,7 @@ class NoResponseActor extends Actor with Stash with Delay with ZMQ with Log{
    * too early calls will be stashed
    */
   import org.zeromq.ZMQ.Socket
-  def communicating(nao: Nao): Receive = {
+  def receive = {
     case c: Call => {
       trace("request: " + c)
       val socket = zmqsocket(nao.host,nao.port)
@@ -47,7 +35,7 @@ class NoResponseActor extends Actor with Stash with Delay with ZMQ with Log{
       import context.dispatcher
       import scala.concurrent.duration._ 
       val caller = sender
-      val answering = after(delay(c.module.title + "." + c.method.title) millis,
+      val answering = after(delay(c.module.name + "." + c.method.name) millis,
         using = context.system.scheduler) {
           import scala.concurrent.Future
           Future {
@@ -57,19 +45,15 @@ class NoResponseActor extends Actor with Stash with Delay with ZMQ with Log{
         }
       answering onSuccess {
         case x => {
-          unstashAll
           socket.close
-          become(communicating(nao))
+          become(receive)
         }
       }
     }
     case x => wrongMessage(x, "communicating")
   }
   
-  def waiting(nao: Nao): Receive = {
-    case c: Call => stash
-    case x => wrongMessage(x, "waiting")
-  }
+
   
   /**
    * If we could use a req compatible socket type like

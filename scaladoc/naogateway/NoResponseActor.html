@@ -40,7 +40,7 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">NoResponseActor</span><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span> with <span class="extype" name="akka.actor.Stash">Stash</span> with <a href="traits/Delay.html" class="extype" name="naogateway.traits.Delay">Delay</a> with <a href="traits/ZMQ.html" class="extype" name="naogateway.traits.ZMQ">ZMQ</a> with <a href="traits/Log.html" class="extype" name="naogateway.traits.Log">Log</a></span>
+        <span class="name">NoResponseActor</span><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span> with <a href="traits/Delay.html" class="extype" name="naogateway.traits.Delay">Delay</a> with <a href="traits/ZMQ.html" class="extype" name="naogateway.traits.ZMQ">ZMQ</a> with <a href="traits/Log.html" class="extype" name="naogateway.traits.Log">Log</a></span>
       </span>
       </h4>
       
@@ -48,7 +48,7 @@
 without care of answering
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="traits/Log.html" class="extype" name="naogateway.traits.Log">Log</a>, <a href="traits/ZMQ.html" class="extype" name="naogateway.traits.ZMQ">ZMQ</a>, <a href="traits/Delay.html" class="extype" name="naogateway.traits.Delay">Delay</a>, <span class="extype" name="akka.actor.Stash">Stash</span>, <span class="extype" name="akka.actor.Actor">Actor</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="traits/Log.html" class="extype" name="naogateway.traits.Log">Log</a>, <a href="traits/ZMQ.html" class="extype" name="naogateway.traits.ZMQ">ZMQ</a>, <a href="traits/Delay.html" class="extype" name="naogateway.traits.Delay">Delay</a>, <span class="extype" name="akka.actor.Actor">Actor</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -66,7 +66,7 @@ without care of answering
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="naogateway.NoResponseActor"><span>NoResponseActor</span></li><li class="in" name="naogateway.traits.Log"><span>Log</span></li><li class="in" name="naogateway.traits.ZMQ"><span>ZMQ</span></li><li class="in" name="naogateway.traits.Delay"><span>Delay</span></li><li class="in" name="akka.actor.Stash"><span>Stash</span></li><li class="in" name="akka.actor.Actor"><span>Actor</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="naogateway.NoResponseActor"><span>NoResponseActor</span></li><li class="in" name="naogateway.traits.Log"><span>Log</span></li><li class="in" name="naogateway.traits.ZMQ"><span>ZMQ</span></li><li class="in" name="naogateway.traits.Delay"><span>Delay</span></li><li class="in" name="akka.actor.Actor"><span>Actor</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -87,7 +87,7 @@ without care of answering
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="naogateway.NoResponseActor#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;():naogateway.NoResponseActor"></a>
+      <a id="&lt;init&gt;(nao:naogateway.value.NaoMessages.Nao):naogateway.NoResponseActor"></a>
       <a id="&lt;init&gt;:NoResponseActor"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -95,7 +95,7 @@ without care of answering
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">NoResponseActor</span><span class="params">()</span>
+        <span class="name">NoResponseActor</span><span class="params">(<span name="nao">nao: <a href="value/NaoMessages$$Nao.html" class="extype" name="naogateway.value.NaoMessages.Nao">Nao</a></span>)</span>
       </span>
       </h4>
       
@@ -218,19 +218,6 @@ without care of answering
                 <span class="name">@throws</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="naogateway.NoResponseActor#communicating" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="communicating(nao:naogateway.value.Nao):NoResponseActor.this.Receive"></a>
-      <a id="communicating(Nao):Receive"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">communicating</span><span class="params">(<span name="nao">nao: <a href="value/Nao.html" class="extype" name="naogateway.value.Nao">Nao</a></span>)</span><span class="result">: <a href="#Receive=akka.actor.Actor.Receive" class="extmbr" name="naogateway.NoResponseActor.Receive">Receive</a></span>
-      </span>
-      </h4>
-      
     </li><li name="akka.actor.Actor#context" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="context:akka.actor.ActorContext"></a>
       <a id="context:ActorContext"></a>
@@ -452,7 +439,7 @@ will be provided as a map String -&gt; Int
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Actor</dd></dl></div>
-    </li><li name="akka.actor.Stash#postStop" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="akka.actor.Actor#postStop" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="postStop():Unit"></a>
       <a id="postStop():Unit"></a>
       <h4 class="signature">
@@ -464,7 +451,7 @@ will be provided as a map String -&gt; Int
         <span class="name">postStop</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Stash</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Actor</dd></dl></div>
     </li><li name="naogateway.traits.ZMQ#preRestart" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="preRestart(reason:Throwable,message:Option[Any]):Unit"></a>
       <a id="preRestart(Throwable,Option[Any]):Unit"></a>
@@ -505,11 +492,7 @@ will be provided as a map String -&gt; Int
         <span class="name">receive</span><span class="result">: <span class="extype" name="scala.PartialFunction">PartialFunction</span>[<span class="extype" name="scala.Any">Any</span>, <span class="extype" name="scala.Unit">Unit</span>]</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">In the start state actor wait for connection data (Nao object)
-with name, ip and port from NaoActor
-</p><div class="fullcomment"><div class="comment cmt"><p>In the start state actor wait for connection data (Nao object)
-with name, ip and port from NaoActor
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="naogateway.NoResponseActor">NoResponseActor</a> → Actor</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="naogateway.NoResponseActor">NoResponseActor</a> → Actor</dd></dl></div>
     </li><li name="akka.actor.Actor#self" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="self:akka.actor.ActorRef"></a>
       <a id="self:ActorRef"></a>
@@ -536,19 +519,6 @@ with name, ip and port from NaoActor
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Actor</dd></dl></div>
-    </li><li name="akka.actor.Stash#stash" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="stash():Unit"></a>
-      <a id="stash():Unit"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">stash</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Stash</dd></dl></div>
     </li><li name="akka.actor.Actor#supervisorStrategy" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="supervisorStrategy:akka.actor.SupervisorStrategy"></a>
       <a id="supervisorStrategy:SupervisorStrategy"></a>
@@ -627,19 +597,6 @@ with name, ip and port from NaoActor
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Actor</dd></dl></div>
-    </li><li name="akka.actor.Stash#unstashAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="unstashAll():Unit"></a>
-      <a id="unstashAll():Unit"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">unstashAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Stash</dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -688,19 +645,6 @@ with name, ip and port from NaoActor
                 <span class="name">@throws</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="naogateway.NoResponseActor#waiting" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="waiting(nao:naogateway.value.Nao):NoResponseActor.this.Receive"></a>
-      <a id="waiting(Nao):Receive"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">waiting</span><span class="params">(<span name="nao">nao: <a href="value/Nao.html" class="extype" name="naogateway.value.Nao">Nao</a></span>)</span><span class="result">: <a href="#Receive=akka.actor.Actor.Receive" class="extmbr" name="naogateway.NoResponseActor.Receive">Receive</a></span>
-      </span>
-      </h4>
-      
     </li><li name="naogateway.traits.Log#wrongMessage" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wrongMessage(a:Any,state:String):Unit"></a>
       <a id="wrongMessage(Any,String):Unit"></a>
@@ -755,8 +699,6 @@ with name, ip and port from NaoActor
               <h3>Inherited from <a href="traits/ZMQ.html" class="extype" name="naogateway.traits.ZMQ">ZMQ</a></h3>
             </div><div class="parent" name="naogateway.traits.Delay">
               <h3>Inherited from <a href="traits/Delay.html" class="extype" name="naogateway.traits.Delay">Delay</a></h3>
-            </div><div class="parent" name="akka.actor.Stash">
-              <h3>Inherited from <span class="extype" name="akka.actor.Stash">Stash</span></h3>
             </div><div class="parent" name="akka.actor.Actor">
               <h3>Inherited from <span class="extype" name="akka.actor.Actor">Actor</span></h3>
             </div><div class="parent" name="scala.AnyRef">

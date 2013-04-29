@@ -17,12 +17,11 @@ import akka.actor.ActorSystem
  */
 object NoResponseTest extends App {
 
-  val system = ActorSystem("scaleNao")
+  val config = ConfigFactory.load()
+  val system = ActorSystem("test",config.getConfig("naogateway"))
 
-  system.logConfiguration
-
-  val noResponseActor = system.actorOf(Props[NoResponseActor].withDispatcher("akka.actor.default-stash-dispatcher"))
-  noResponseActor ! Nao("Nila", "127.0.0.1", 5555)
+  val nao = Nao("Nila", "127.0.0.1", 5555)
+  val noResponseActor = system.actorOf(Props(new NoResponseActor(nao)),"noresponse")
   for (i <- 0 to 4)
     system.actorOf(Props[NoResponseTestActor])
 

@@ -4,10 +4,11 @@ import akka.actor.Actor
 import akka.actor.Props
 import akka.actor.ActorRef
 import naogateway.traits.Log
+import naogateway.value.NaoMessages.Nao
 
 /**
  * HeartBeatActor is used to know nao connection status
- * actor use zmq messages to test wheter nao answer before timeout
+ * actor use zmq messages to test whether nao answer before timeout
  * configuration standard
  * 	heartbeatactor {
  * 		online.delay = 1000
@@ -17,12 +18,11 @@ import naogateway.traits.Log
  * 	if actor must be restarted nao status is unknown, so start state is
  * 	the right state
  */
-class HeartBeatActor extends Actor with Log {
+class HeartBeatActor(nao:Nao) extends Actor with Log {
 
-  val offlineTimes = 3
-  val response = context.actorOf(Props[ResponseActor], "response")
+  val offlineTimes = context.system.settings.config.getInt("heartbeatactor.offlinetimes")
+  val response = context.actorOf(Props(new ResponseActor(nao)), "response")
 
-  import naogateway.value._
   import naogateway.value.NaoMessages._
   import naogateway.value.NaoMessages.Conversions
   import context._
@@ -31,9 +31,8 @@ class HeartBeatActor extends Actor with Log {
    * start state is waiting on nao connecting information
    */
   def receive = {
-    case nao: Nao => {
-      response ! nao
-      step(nao, online(nao,sender), Online, maybeOffline(nao,sender), MaybeOffline, on,sender)
+    case Trigger => {
+      step(nao, online(nao,sender), Online, maybeOffline(nao,sender), None, on,sender)
     }
   }
 
@@ -46,7 +45,7 @@ class HeartBeatActor extends Actor with Log {
    */
   def maybeOffline(nao: Nao, caller:ActorRef,count: Int = 0): Receive = {
     case Trigger if count < offlineTimes-2 => {
-      step(nao, online(nao,caller), Online, maybeOffline(nao,caller, count + 1), MaybeOffline, off,caller)
+      step(nao, online(nao,caller), Online, maybeOffline(nao,caller, count + 1), None, off,caller)
     }
     case _ => {
       step(nao, online(nao,caller), Online, receive, Offline, off,caller)
@@ -57,7 +56,7 @@ class HeartBeatActor extends Actor with Log {
    * online state suppose nao is online and wait on next trigger
    */
   def online(nao: Nao,caller:ActorRef): Receive = {
-    case Trigger => step(nao, online(nao,caller), Online, maybeOffline(nao,caller), MaybeOffline, on,caller)
+    case Trigger => step(nao, online(nao,caller), Online, maybeOffline(nao,caller), None, on,caller)
   }
 
   /**
@@ -71,7 +70,7 @@ class HeartBeatActor extends Actor with Log {
   import scala.concurrent.duration._
   import org.zeromq.ZMQ.Socket
   def step(nao: Nao, suc: PartialFunction[Any, Unit], succMessage: Any, fail: PartialFunction[Any, Unit], failMessage: Any, d: FiniteDuration,caller:ActorRef) = {
-    val c = Call(Module("test"), Method("test"))
+    val c = Call('Test, 'Test)
     import scala.concurrent.Await
     import akka.pattern.ask
     import akka.util.Timeout
@@ -81,14 +80,16 @@ class HeartBeatActor extends Actor with Log {
 
     answering onSuccess {
       case _ => {
-        caller ! succMessage
+        if (succMessage != None)
+        	caller ! succMessage
         delay(on)
         become(suc)
       }
     }
     answering onFailure {
       case _ => {
-        caller ! failMessage
+        if (failMessage != None)
+        	caller ! failMessage
         delay(off)
         become(fail)
       }
@@ -111,7 +112,15 @@ class HeartBeatActor extends Actor with Log {
       }
     }
   }
+  
+  /**
+   * delay of online state, next test message after this delay
+   */
   val on = context.system.settings.config.getInt("heartbeatactor.online.delay") millis
+  
+  /**
+   * delay of maybeoffline or offlinestate, next test message after this delay
+   */
   val off = context.system.settings.config.getInt("heartbeatactor.online.delay") millis
   
   trace("is started ")

@@ -45,7 +45,7 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>HeartBeatActor is used to know nao connection status
-actor use zmq messages to test wheter nao answer before timeout
+actor use zmq messages to test whether nao answer before timeout
 configuration standard
 	heartbeatactor {
 		online.delay = 1000
@@ -95,7 +95,7 @@ configuration standard
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="naogateway.HeartBeatActor#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;():naogateway.HeartBeatActor"></a>
+      <a id="&lt;init&gt;(nao:naogateway.value.NaoMessages.Nao):naogateway.HeartBeatActor"></a>
       <a id="&lt;init&gt;:HeartBeatActor"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -103,7 +103,7 @@ configuration standard
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">HeartBeatActor</span><span class="params">()</span>
+        <span class="name">HeartBeatActor</span><span class="params">(<span name="nao">nao: <a href="value/NaoMessages$$Nao.html" class="extype" name="naogateway.value.NaoMessages.Nao">Nao</a></span>)</span>
       </span>
       </h4>
       
@@ -360,7 +360,7 @@ configuration standard
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="traits/Log.html" class="extype" name="naogateway.traits.Log">Log</a></dd></dl></div>
     </li><li name="naogateway.HeartBeatActor#maybeOffline" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="maybeOffline(nao:naogateway.value.Nao,caller:akka.actor.ActorRef,count:Int):HeartBeatActor.this.Receive"></a>
+      <a id="maybeOffline(nao:naogateway.value.NaoMessages.Nao,caller:akka.actor.ActorRef,count:Int):HeartBeatActor.this.Receive"></a>
       <a id="maybeOffline(Nao,ActorRef,Int):Receive"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -368,7 +368,7 @@ configuration standard
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">maybeOffline</span><span class="params">(<span name="nao">nao: <a href="value/Nao.html" class="extype" name="naogateway.value.Nao">Nao</a></span>, <span name="caller">caller: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>, <span name="count">count: <span class="extype" name="scala.Int">Int</span> = <span class="symbol">0</span></span>)</span><span class="result">: <a href="#Receive=akka.actor.Actor.Receive" class="extmbr" name="naogateway.HeartBeatActor.Receive">Receive</a></span>
+        <span class="name">maybeOffline</span><span class="params">(<span name="nao">nao: <a href="value/NaoMessages$$Nao.html" class="extype" name="naogateway.value.NaoMessages.Nao">Nao</a></span>, <span name="caller">caller: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>, <span name="count">count: <span class="extype" name="scala.Int">Int</span> = <span class="symbol">0</span></span>)</span><span class="result">: <a href="#Receive=akka.actor.Actor.Receive" class="extmbr" name="naogateway.HeartBeatActor.Receive">Receive</a></span>
       </span>
       </h4>
       <p class="shortcomment cmt">maybeoffline is a state which suppose that nao is not online
@@ -427,7 +427,8 @@ because of that couting is offlineTimes-2 times by start at 0.</p>
         <span class="name">off</span><span class="result">: <span class="extype" name="scala.concurrent.duration.FiniteDuration">FiniteDuration</span></span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">delay of maybeoffline or offlinestate, next test message after this delay
+</p>
     </li><li name="naogateway.HeartBeatActor#offlineTimes" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="offlineTimes:Int"></a>
       <a id="offlineTimes:Int"></a>
@@ -453,9 +454,10 @@ because of that couting is offlineTimes-2 times by start at 0.</p>
         <span class="name">on</span><span class="result">: <span class="extype" name="scala.concurrent.duration.FiniteDuration">FiniteDuration</span></span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">delay of online state, next test message after this delay
+</p>
     </li><li name="naogateway.HeartBeatActor#online" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="online(nao:naogateway.value.Nao,caller:akka.actor.ActorRef):HeartBeatActor.this.Receive"></a>
+      <a id="online(nao:naogateway.value.NaoMessages.Nao,caller:akka.actor.ActorRef):HeartBeatActor.this.Receive"></a>
       <a id="online(Nao,ActorRef):Receive"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -463,7 +465,7 @@ because of that couting is offlineTimes-2 times by start at 0.</p>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">online</span><span class="params">(<span name="nao">nao: <a href="value/Nao.html" class="extype" name="naogateway.value.Nao">Nao</a></span>, <span name="caller">caller: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>)</span><span class="result">: <a href="#Receive=akka.actor.Actor.Receive" class="extmbr" name="naogateway.HeartBeatActor.Receive">Receive</a></span>
+        <span class="name">online</span><span class="params">(<span name="nao">nao: <a href="value/NaoMessages$$Nao.html" class="extype" name="naogateway.value.NaoMessages.Nao">Nao</a></span>, <span name="caller">caller: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>)</span><span class="result">: <a href="#Receive=akka.actor.Actor.Receive" class="extmbr" name="naogateway.HeartBeatActor.Receive">Receive</a></span>
       </span>
       </h4>
       <p class="shortcomment cmt">online state suppose nao is online and wait on next trigger
@@ -575,7 +577,7 @@ because of that couting is offlineTimes-2 times by start at 0.</p>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Actor</dd></dl></div>
     </li><li name="naogateway.HeartBeatActor#step" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="step(nao:naogateway.value.Nao,suc:PartialFunction[Any,Unit],succMessage:Any,fail:PartialFunction[Any,Unit],failMessage:Any,d:scala.concurrent.duration.FiniteDuration,caller:akka.actor.ActorRef):Unit"></a>
+      <a id="step(nao:naogateway.value.NaoMessages.Nao,suc:PartialFunction[Any,Unit],succMessage:Any,fail:PartialFunction[Any,Unit],failMessage:Any,d:scala.concurrent.duration.FiniteDuration,caller:akka.actor.ActorRef):Unit"></a>
       <a id="step(Nao,PartialFunction[Any,Unit],Any,PartialFunction[Any,Unit],Any,FiniteDuration,ActorRef):Unit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -583,7 +585,7 @@ because of that couting is offlineTimes-2 times by start at 0.</p>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">step</span><span class="params">(<span name="nao">nao: <a href="value/Nao.html" class="extype" name="naogateway.value.Nao">Nao</a></span>, <span name="suc">suc: <span class="extype" name="scala.PartialFunction">PartialFunction</span>[<span class="extype" name="scala.Any">Any</span>, <span class="extype" name="scala.Unit">Unit</span>]</span>, <span name="succMessage">succMessage: <span class="extype" name="scala.Any">Any</span></span>, <span name="fail">fail: <span class="extype" name="scala.PartialFunction">PartialFunction</span>[<span class="extype" name="scala.Any">Any</span>, <span class="extype" name="scala.Unit">Unit</span>]</span>, <span name="failMessage">failMessage: <span class="extype" name="scala.Any">Any</span></span>, <span name="d">d: <span class="extype" name="scala.concurrent.duration.FiniteDuration">FiniteDuration</span></span>, <span name="caller">caller: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">step</span><span class="params">(<span name="nao">nao: <a href="value/NaoMessages$$Nao.html" class="extype" name="naogateway.value.NaoMessages.Nao">Nao</a></span>, <span name="suc">suc: <span class="extype" name="scala.PartialFunction">PartialFunction</span>[<span class="extype" name="scala.Any">Any</span>, <span class="extype" name="scala.Unit">Unit</span>]</span>, <span name="succMessage">succMessage: <span class="extype" name="scala.Any">Any</span></span>, <span name="fail">fail: <span class="extype" name="scala.PartialFunction">PartialFunction</span>[<span class="extype" name="scala.Any">Any</span>, <span class="extype" name="scala.Unit">Unit</span>]</span>, <span name="failMessage">failMessage: <span class="extype" name="scala.Any">Any</span></span>, <span name="d">d: <span class="extype" name="scala.concurrent.duration.FiniteDuration">FiniteDuration</span></span>, <span name="caller">caller: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4>
       
