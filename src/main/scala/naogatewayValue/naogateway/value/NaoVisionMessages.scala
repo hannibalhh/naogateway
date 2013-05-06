@@ -61,7 +61,6 @@ object NaoVisionMessages{
    * Thats for more speed, it have to be tested
    */
   case class RawVisionCall(resolution:Resolutions.Value,colorSpaces:ColorSpaces.Value,fps:Frames.Value) extends VisionCalling
-  case class Picture(bytes:Array[Byte])
  
   /**
    * Build a CamRequest from VisionCalling
@@ -72,18 +71,9 @@ object NaoVisionMessages{
   }
   
   /**
-   * Implicit convert of a CamResponse to  bytearray
+   *  convert of a CamResponse to  CamResponse
    */
-  implicit def CamResponseTOByteArray(r: Array[Byte]) = HawCam.CamResponse.parseFrom(r)
+   def picture(r: Array[Byte]) = HawCam.CamResponse.parseFrom(r)
   
-  /**
-   * make a Picture from CamResponse
-   */
-  def picture(p: HawCam.CamResponse) = {
-    if (p.hasImageData())
-      Picture(p.getImageData().toByteArray())
-    else
-      Picture(Array())
-  }
    
 }
