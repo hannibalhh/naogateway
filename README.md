@@ -242,6 +242,6 @@ befinden. Dieses Beispiel ist gleichzeitig die Konfiguration des Testapplikation
 	}
 
 Die Architektur und Kommunikation ist in
-https://github.com/hannibalhh/naogateway/blob/master/naogateway.pdf
+https://github.com/hannibalhh/naogateway/blob/master/naogateway.pdf?raw=true
 beschrieben.
 
