@@ -33,8 +33,8 @@ public class ZMQ {
 		// java.library.path
 		if (!EmbeddedLibraryTools.LOADED_EMBEDDED_LIBRARY)
 		{
-			System.load("/usr/local/lib/libjzmq.0.dylib");
-//			System.load("/usr/local/lib/libjzmq.so");
+//			System.load("/usr/local/lib/libjzmq.0.dylib");
+			System.load("/usr/local/lib/libjzmq.so");
 
 		}
 	}
