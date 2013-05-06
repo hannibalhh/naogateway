@@ -116,8 +116,8 @@ Binärdateien sind zu bekommen unter:
 ### Installation Simple Build Tool
 
 	wget http://apt.typesafe.com/repo-deb-build-0002.deb
-	sudo dpkg -i repo-deb-build-0002.deb
-	sudo apt-get install typesafe-stack 
+	dpkg -i repo-deb-build-0002.deb
+	apt-get install typesafe-stack 
 
 
 ### Installation naogateway
