@@ -10,7 +10,9 @@ import naogateway.value.NaoMessages.Nao
  * NaoResponseActor send calls to nao and send the answer to caller
  */
 class ResponseActor(nao:Nao) extends Actor with Delay with ZMQ with Log{
-  import naogateway.value.NaoMessages._
+  val logname = "responseactor"
+ 
+ import naogateway.value.NaoMessages._
   import naogateway.value.NaoMessages.Conversions
   import context._
 
@@ -51,4 +53,5 @@ class ResponseActor(nao:Nao) extends Actor with Delay with ZMQ with Log{
   }
 
   trace("is started ")
+
 }

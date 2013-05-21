@@ -10,6 +10,7 @@ import naogateway.value.HAWCamserverMessages.CamRequest
  * VisionActor communicates with HAWCamActor on nao with ZMQ
  */
 class VisionActor(nao:Nao) extends Actor with Log with ZMQ{
+  val logname = "visionactor"
   trace(nao)
   import naogateway.value.NaoMessages.Nao
   import naogateway.value.NaoVisionMessages._
@@ -90,4 +91,5 @@ class VisionActor(nao:Nao) extends Actor with Log with ZMQ{
   }
 
   trace("is started ")
+
 }

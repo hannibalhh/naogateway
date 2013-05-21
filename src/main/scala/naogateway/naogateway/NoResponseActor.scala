@@ -13,6 +13,7 @@ import naogateway.value.NaoMessages.Nao
  * without care of answering
  */
 class NoResponseActor(nao:Nao) extends Actor with Delay with ZMQ with Log{
+  val logname = "noresponseactor"
 
   import naogateway.value.NaoMessages._
   import naogateway.value.NaoMessages.Conversions
@@ -104,4 +105,5 @@ class NoResponseActor(nao:Nao) extends Actor with Delay with ZMQ with Log{
 //  }
 
   trace("is started ")
+
 }

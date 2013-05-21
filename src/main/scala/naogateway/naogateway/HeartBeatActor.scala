@@ -19,6 +19,7 @@ import naogateway.value.NaoMessages.Nao
  * 	the right state
  */
 class HeartBeatActor(nao:Nao) extends Actor with Log {
+  val logname = "heartbeatactor"
 
   val offlineTimes = context.system.settings.config.getInt("heartbeatactor.offlinetimes")
   val response = context.actorOf(Props(new ResponseActor(nao)), "response")

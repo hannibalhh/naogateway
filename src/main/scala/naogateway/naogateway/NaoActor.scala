@@ -12,6 +12,7 @@ import akka.actor.Actor
  import naogateway.traits.Log
 
  class NaoActor extends Actor with Stash with Log{
+  val logname = "naoactor"
 
   import naogateway.value._
   import naogateway.value.NaoMessages._
