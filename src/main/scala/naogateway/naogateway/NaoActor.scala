@@ -49,7 +49,7 @@ import akka.actor.Actor
       trace(nao + " is online")
       val response = context.actorOf(Props(new ResponseActor(nao)),"response")
       val noResponse = context.actorOf(Props(new NoResponseActor(nao)),"noresponse")
-      val vision = context.actorOf(Props(new VisionActor(nao)),"vision")     
+      val vision = context.actorOf(Props(new VisionActor(naoVision)),"vision")     
       unstashAll
       become(communicating(response,noResponse,vision))
     }
