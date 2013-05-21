@@ -47,11 +47,8 @@ class SimpleReq(address: String = "tcp://127.0.0.1:5555", tracing: Boolean = tru
   /**
    * simple toString for List[MixedValue]
    */
-  def toString(params: List[MixedValue]): String = {
-    if (params.isEmpty)
-      ""
-    else
-      "(" + params.head.getString() + ")" + toString(params.tail)
+  def toString(params: List[MixedValue]) = {
+    params.map(x => NaoMessages.toString(x))
   }
 
   /**

@@ -1,6 +1,5 @@
 package naogateway.value
 
-import com.google.protobuf.ByteString
 
 object NaoVisionMessages{
   
@@ -42,38 +41,23 @@ object NaoVisionMessages{
   }
   
   /**
-   * VisionCalling is trait for VisionCall and RawVisionCall
+   * VisionCall requests a CamResponse (which contains a picture as a bytearray)
    * with resolution,colorspace and fps 
    */
-  trait VisionCalling{
-    val resolution:Resolutions.Value
-    val colorSpaces:ColorSpaces.Value
-    val fps:Frames.Value
-  }
-  
-  /**
-   * VisionCall requests a CamResponse (which contains a picture as a bytearray)
-   */
-  case class VisionCall(resolution:Resolutions.Value,colorSpaces:ColorSpaces.Value,fps:Frames.Value) extends VisionCalling
- 
-  /**
-   * RawVisionCall requests a Picture (which contains a pure protobuf bytearray)
-   * Thats for more speed, it have to be tested
-   */
-  case class RawVisionCall(resolution:Resolutions.Value,colorSpaces:ColorSpaces.Value,fps:Frames.Value) extends VisionCalling
+  case class VisionCall(resolution:Resolutions.Value,colorSpaces:ColorSpaces.Value,fps:Frames.Value)
  
   /**
    * Build a CamRequest from VisionCalling
    */
-  def request(c: VisionCalling) = {
-    val param = HawCam.CamRequest.newBuilder.setResolution(c.resolution.id).setColorSpace(c.colorSpaces.id).setFps(c.fps.id+1)
+  def request(c: VisionCall) = {
+    val param = HAWCamserverMessages.CamRequest.newBuilder.setResolution(c.resolution.id).setColorSpace(c.colorSpaces.id).setFps(c.fps.id+1)
     param.build
   }
   
   /**
    *  convert of a CamResponse to  CamResponse
    */
-   def picture(r: Array[Byte]) = HawCam.CamResponse.parseFrom(r)
+   def picture(r: Array[Byte]) = HAWCamserverMessages.CamResponse.parseFrom(r)
   
    
 }

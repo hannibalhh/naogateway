@@ -8,6 +8,8 @@ import naogateway.value.NaoMessages._
 import naogateway.value.NaoMessages.Conversions._
 import akka.actor.Address
 import naogateway.value.NaoVisionMessages._
+import naogateway.value.HAWCamserverMessages.CamRequest
+import naogateway.value.HAWCamserverMessages.CamResponse
 
 /**
  * RemoteTest is a runnable client appliction to send 
@@ -18,9 +20,9 @@ object RemoteTest extends App{
   val config = ConfigFactory.load()
   val system = ActorSystem("remoting",config.getConfig("remoting").withFallback(config))
  
-  val naoActor = system.actorFor("akka://naogateway@172.0.0.1:2552/user/localnila")
+  val naoActor = system.actorFor("akka://naogateway@192.168.1.100:2552/user/nila")
   println(naoActor)
-  system.actorOf(Props[MyResponseTestActor])	
+  system.actorOf(Props[MyResponseTestActor],"testactor")	
   
   class MyResponseTestActor extends Actor  {
     override def preStart = naoActor ! Connect
@@ -33,11 +35,12 @@ object RemoteTest extends App{
 //        response ! Call('ALTextToSpeech, 'getVolume)
 //        response ! Call('ALTextToSpeech, 'getVolume)
 //        noResponse ! Call('ALTextToSpeech, 'say, List("Stehen bleiben!"))
-//        response ! Call('ALTextToSpeech, 'say, List("Stehen bleiben!"))
-//        vision ! VisionCall(Resolutions.k4VGA,ColorSpaces.kBGR,Frames._20)
+//        response ! Call('ALMotion, 'getCOM, List("HeadYaw",1,false))
+        vision ! VisionCall(Resolutions.k4VGA,ColorSpaces.kRGB,Frames._20)
 //        vision ! RawVisionCall(Resolutions.k4VGA,ColorSpaces.kBGR,Frames._20)
       }    
-      case x => trace(x)
+      case c:CamResponse => trace("cam: " +  c)
+      case x => trace(x.getClass + "other" + x)
     }
     
     def trace(a: Any) = log.info(a.toString)
